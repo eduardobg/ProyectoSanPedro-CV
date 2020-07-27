@@ -1,29 +1,41 @@
 package pe.sanpedro.systemcv.controllers;
 
 import java.awt.CardLayout;
+import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 import pe.sanpedro.systemcv.dao.GenericDao;
 import pe.sanpedro.systemcv.dao.impl.DaoBoletaImpl;
 import pe.sanpedro.systemcv.dao.impl.DaoClienteImpl;
 import pe.sanpedro.systemcv.dao.impl.DaoDetallePedidoImpl;
+import pe.sanpedro.systemcv.dao.impl.DaoInfoEmpresaImpl;
 import pe.sanpedro.systemcv.dao.impl.DaoMascotaImpl;
 import pe.sanpedro.systemcv.dao.impl.DaoOrdenPedidoImpl;
 import pe.sanpedro.systemcv.dao.impl.DaoServiciosImpl;
-import pe.sanpedro.systemcv.model.Boleta;
+//import pe.sanpedro.systemcv.model.Boleta;
+import pe.sanpedro.systemcv.dto.Boleta;
 import pe.sanpedro.systemcv.model.Cliente;
 import pe.sanpedro.systemcv.model.DetallePedido;
+import pe.sanpedro.systemcv.model.InfoEmpresa;
 import pe.sanpedro.systemcv.model.Mascota;
 import pe.sanpedro.systemcv.model.OrdenPedido;
 import pe.sanpedro.systemcv.model.Servicios;
 import pe.sanpedro.systemcv.view.FrmMainCaja;
 import pe.sanpedro.systemcv.view.PnlEstetica_MC;
-
-/**
+/*
  *
  * @author Mysk
  */
@@ -204,11 +216,35 @@ public class CtrlEstetica_MC {
         int idTrabajador = CtrlMC.idT;
         double importeTotal = Double.parseDouble(pnlEstetica.getTxt_total().getText());
         double montoIngresado= Double.parseDouble(pnlEstetica.getTxt_ingresado().getText());
-        double vuelo= Double.parseDouble(pnlEstetica.getTxt_devolucion().getText());
-        Boleta boleta = new Boleta(id_orden, idTrabajador, LocalDate.now(),importeTotal,montoIngresado,vuelo);
+        double vuelto= Double.parseDouble(pnlEstetica.getTxt_devolucion().getText());
+        Boleta boleta = new Boleta(id_orden, idTrabajador, LocalDate.now().toString(),importeTotal,montoIngresado,vuelto);
         daoEstetica = new DaoBoletaImpl();
         daoEstetica.insert(boleta);
         daoEstetica.getMessage();
+        
+        //JASPER
+        InputStream arch = CtrlEstetica_MC.class.getClassLoader().getResourceAsStream("informes/Factura.jrxml");
+        System.out.println( "Ubicacion de reporte " + arch.toString() );
+        daoEstetica = new DaoInfoEmpresaImpl();
+        List<InfoEmpresa> info = daoEstetica.sel();
+        
+        List<Boleta> lr= new ArrayList();
+        listaDetalle.forEach((t) -> {
+            lr.add(new Boleta(info.get(0).getNombreE(),info.get(0).getRuc(),info.get(0).getPropiertario(),info.get(0).getDirec(),info.get(0).getTelf(), info.get(0).getCel(), info.get(0).getCorreo(), 
+                    t.getId_orden(), nombreCli, direcCli, dni, LocalDate.now().toString(), t.getCantidad(), t.getDescripcion(), t.getPrecio(),
+                    t.getPrecio(), montoIngresado, importeTotal, vuelto));
+        });
+        try{
+            JasperReport jr = JasperCompileManager.compileReport(arch);
+            Map<String, Object> pr = new HashMap<>();
+            JRBeanCollectionDataSource jbcd = new JRBeanCollectionDataSource(lr);            
+            JasperPrint jp = JasperFillManager.fillReport(jr, pr, jbcd);
+            JasperViewer.viewReport(jp);
+        }catch (JRException e){
+            e.printStackTrace();
+        }      
+      
+        
     }
     
      private void cambiarCliente() {

@@ -9,7 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import pe.sanpedro.systemcv.dao.GenericDao;
-import pe.sanpedro.systemcv.model.Boleta;
+//import pe.sanpedro.systemcv.model.Boleta;
+import pe.sanpedro.systemcv.dto.Boleta;
 import pe.sanpedro.systemcv.util.ConectaBD;
 
 /**
@@ -38,9 +39,9 @@ public class DaoBoletaImpl implements GenericDao<Boleta>{
                 .append(") VALUES (?,?,?,?,?,?) ");
         try (Connection cn = conectaDb.conexionDB()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
-            ps.setString(1, t.getId_ordenPedido().toString());
+            ps.setString(1, t.getId_orden().toString());
             ps.setString(2, t.getId_trabajador().toString());
-            ps.setString(3, t.getFecha_reg().toString());
+            ps.setString(3, t.getFecha_reg());
             ps.setString(4, String.valueOf(t.getImporteTotal()));
             ps.setString(5, String.valueOf(t.getMontoIngresado())); 
             ps.setString(6, String.valueOf(t.getVuelto()));
