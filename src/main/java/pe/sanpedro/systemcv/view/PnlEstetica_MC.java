@@ -24,6 +24,7 @@ public class PnlEstetica_MC extends javax.swing.JPanel {
         initComponents();
         btn_generarBoleta.setEnabled(false);
     }
+    
 
     public ButtonGroup getBtnGroup() {
         return btnGroup;
@@ -64,10 +65,7 @@ public class PnlEstetica_MC extends javax.swing.JPanel {
     public JButton getBtn_agregarS() {
         return jButton7;
     }
-
-    public JButton getBtn_buscarS() {
-        return jButton6;
-    }
+   
 
     public JButton getBtn_cambiarM() {
         return btn_cambiarM;
@@ -76,10 +74,7 @@ public class PnlEstetica_MC extends javax.swing.JPanel {
     public JButton getBtn_cambiarS() {
         return btn_cambiarS;
     }
-
-    public JTextField getTxt_buscarS() {
-        return txt_buscarS;
-    }
+    
 
     public JTextField getTxt_especieM() {
         return txt_especieM;
@@ -211,8 +206,6 @@ public class PnlEstetica_MC extends javax.swing.JPanel {
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jtbl2 = new javax.swing.JTable();
-        txt_buscarS = new javax.swing.JTextField();
-        jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -306,15 +299,14 @@ public class PnlEstetica_MC extends javax.swing.JPanel {
                         .addComponent(txt_idCli, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(txt_buscarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_buscarCli))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addComponent(btn_cambiarCli)))
+                .addGap(81, 81, 81)
+                .addComponent(txt_buscarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_buscarCli)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(263, 263, 263)
+                .addComponent(btn_cambiarCli)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -407,8 +399,6 @@ public class PnlEstetica_MC extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jtbl2);
 
-        jButton6.setText("Buscar");
-
         jButton7.setText("Agregar");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -417,30 +407,24 @@ public class PnlEstetica_MC extends javax.swing.JPanel {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(txt_buscarS, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton6)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton7)))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 601, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton7)
+                .addGap(272, 272, 272))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(32, 32, 32)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txt_buscarS, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6)
-                    .addComponent(jButton7))
-                .addGap(18, 18, 18)
+                .addGap(29, 29, 29)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jButton7)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle de Baño y corte"));
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalle Orden"));
 
         jLabel7.setText("ID Mascota:");
 
@@ -451,7 +435,7 @@ public class PnlEstetica_MC extends javax.swing.JPanel {
             }
         });
 
-        jLabel8.setText("Taria:");
+        jLabel8.setText("Tarifa:");
 
         txt_nombM.setEditable(false);
 
@@ -672,7 +656,6 @@ public class PnlEstetica_MC extends javax.swing.JPanel {
     private javax.swing.JButton btn_cambiarS;
     private javax.swing.JButton btn_cobrar;
     private javax.swing.JButton btn_generarBoleta;
-    private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -704,7 +687,6 @@ public class PnlEstetica_MC extends javax.swing.JPanel {
     private javax.swing.JTextField txt_apeCli;
     private javax.swing.JTextField txt_buscarCli;
     private javax.swing.JTextField txt_buscarM;
-    private javax.swing.JTextField txt_buscarS;
     private javax.swing.JTextField txt_devolucion;
     private javax.swing.JTextField txt_direcCli;
     private javax.swing.JTextField txt_dniCli;

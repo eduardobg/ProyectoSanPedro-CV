@@ -2,7 +2,6 @@
 package pe.sanpedro.systemcv.controllers;
 
 import java.awt.CardLayout;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;

@@ -29,6 +29,7 @@ public class CtrlLogin {
     public void initControllerT() {       
         frmlogin.getbtnIngresar().addActionListener(e -> loginTrab());
         frmlogin.getbtnAdmin().addActionListener(e -> initControllerA());
+        frmlogin.getbtnCerrar().addActionListener(e -> cerrar());
         frmlogin.setVisible(true);
     }
 
@@ -52,13 +53,13 @@ public class CtrlLogin {
                 frmlogin.setVisible(false);                                
                 switch(area){
                     case 1: CtrlMR ctrlMR = new CtrlMR(); //Para inicar el Main de Recepcion
-                            ctrlMR.initController(employee.getDni());
+                            ctrlMR.initController(dni);
                             break;
-                    case 2: CtrlMC ctrlMC = new CtrlMC(employee.getId());
-                            ctrlMC.initController(employee.getDni());
+                    case 2: CtrlMC ctrlMC = new CtrlMC(employee.getId()); //Solo el controlador de farmacia debe tener un id en su constructor
+                            ctrlMC.initController(dni);
                             break;
                     case 3: CtrlMF ctrlMF = new CtrlMF(); //Para inicar el Main de Farmacia
-                            ctrlMF.initController(employee.getDni());
+                            ctrlMF.initController(dni);
                             break;  
                     case 4: System.out.println("Todavia no implementado");
                             break;        
@@ -95,5 +96,8 @@ public class CtrlLogin {
         }
 
         return admin;
+    }
+    private void cerrar(){
+        System.exit(0);
     }
 }

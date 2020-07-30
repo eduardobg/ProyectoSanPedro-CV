@@ -11,15 +11,17 @@ public class DetallePedido {
     private Integer cantidad;
     private String descripcion;
     private double precio;
+    private double subtotal;
     
     public void DetallePedido(){}
     //Para crear Servicios
-    public DetallePedido(Integer id_orden, Integer id_pro, Integer cantidad, String descripcion, double precio) {
+    public DetallePedido(Integer id_orden, Integer id_pro, Integer cantidad, String descripcion, double precio, double subtotal) {
         this.id_orden = id_orden;
         this.id_pro = id_pro;
         this.cantidad = cantidad;
         this.descripcion = descripcion;
         this.precio = precio;
+        this.subtotal=subtotal;
     }
     
 
@@ -62,6 +64,14 @@ public class DetallePedido {
 
     public void setPrecio(double precio) {
         this.precio = precio;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
     }
     
         

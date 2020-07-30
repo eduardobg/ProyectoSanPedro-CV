@@ -3,6 +3,7 @@ pe\sanpedro\systemcv\view\PnlEstetica_MC$2.class
 pe\sanpedro\systemcv\view\FrmMainCaja.class
 pe\sanpedro\systemcv\view\JdlgLoginA.class
 pe\sanpedro\systemcv\view\FrmLoginT$3.class
+pe\sanpedro\systemcv\view\PnlExamenes_MC.class
 pe\sanpedro\systemcv\view\PnlTrabajadores_MA.class
 pe\sanpedro\systemcv\view\FrmMainFarmacia.class
 pe\sanpedro\systemcv\view\FrmMainAdmin.class
@@ -21,12 +22,15 @@ pe\sanpedro\systemcv\dao\impl\DaoDetallePedidoImpl.class
 pe\sanpedro\systemcv\controllers\CtrlMR.class
 pe\sanpedro\systemcv\controllers\CtrlInicio_MA.class
 pe\sanpedro\systemcv\dao\impl\DaoServiciosImpl.class
+pe\sanpedro\systemcv\view\PnlExamenes_MC$1.class
 pe\sanpedro\systemcv\model\InfoEmpresa.class
 pe\sanpedro\systemcv\view\FrmMainRecepcion$1.class
 pe\sanpedro\systemcv\model\Mascota.class
+pe\sanpedro\systemcv\controllers\CtrlExamenes_MC.class
 pe\sanpedro\systemcv\view\FrmMainCaja$1.class
 pe\sanpedro\systemcv\model\Servicios.class
 pe\sanpedro\systemcv\dto\Boleta.class
+pe\sanpedro\systemcv\view\PnlInicio_MC.class
 pe\sanpedro\systemcv\view\PnlEstetica_MC.class
 pe\sanpedro\systemcv\view\FrmLoginT$1.class
 pe\sanpedro\systemcv\controllers\CtrlLogin.class
@@ -34,6 +38,7 @@ pe\sanpedro\systemcv\dao\impl\DaoBoletaImpl.class
 pe\sanpedro\systemcv\view\FrmMainFarmacia$1.class
 pe\sanpedro\systemcv\dao\impl\DaoOrdenPedidoImpl.class
 pe\sanpedro\systemcv\view\PnlInfoEmpresa_MA.class
+pe\sanpedro\systemcv\controllers\CtrlInicio_MC.class
 pe\sanpedro\systemcv\model\DetallePedido.class
 pe\sanpedro\systemcv\controllers\CtrlMC.class
 pe\sanpedro\systemcv\dao\impl\DaoTrabajadoresImpl.class

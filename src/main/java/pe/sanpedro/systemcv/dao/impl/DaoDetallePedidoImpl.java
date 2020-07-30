@@ -36,9 +36,10 @@ public class DaoDetallePedidoImpl implements GenericDao<DetallePedido> {
             sql.append("id_med,");
         }
         sql.append("cantidad,")
-                .append("descrip, ")
-                .append("precio ")
-                .append(") VALUES (?,?,?,?,?) ");
+                .append("descrip,")
+                .append("precio,")
+                .append("subtotal ")
+                .append(") VALUES (?,?,?,?,?,?) ");
 
         try (Connection cn = conectaDb.conexionDB()) {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
@@ -49,6 +50,7 @@ public class DaoDetallePedidoImpl implements GenericDao<DetallePedido> {
                 ps.setString(3, l.get(i).getCantidad().toString());
                 ps.setString(4, l.get(i).getDescripcion());
                 ps.setString(5, String.valueOf(l.get(i).getPrecio()));
+                ps.setString(6, String.valueOf(l.get(i).getSubtotal()));
                 dml = ps.executeUpdate();
                 dml= dml +1;
             }            

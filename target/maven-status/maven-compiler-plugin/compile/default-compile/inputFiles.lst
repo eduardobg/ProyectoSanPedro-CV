@@ -1,6 +1,7 @@
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\model\Mascota.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\util\ConectaBD.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlInfo_MA.java
+D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlInicio_MC.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoTrabajadoresImpl.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\run\LoginApp.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\run\test.java
@@ -13,15 +14,18 @@ D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\dao
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\view\JdlgLoginA.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\view\PnlInicio_MA.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\dto\Boleta.java
+D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\view\PnlExamenes_MC.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlMR.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlMF.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\view\FrmMainAdmin.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoOrdenPedidoImpl.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoServiciosImpl.java
+D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\view\PnlInicio_MC.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlInicio_MA.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoAdminImpl.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\view\FrmMainFarmacia.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlTrabajadores_MA.java
+D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlExamenes_MC.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\model\Admin.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\view\FrmMainCaja.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlMA.java

@@ -292,5 +292,6 @@ public class DaoTrabajadoresImpl implements GenericDao<Trabajadores> {
     public String getMessage() {
         return mensaje;
     }
+    
 
 }
