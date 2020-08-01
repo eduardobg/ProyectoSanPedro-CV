@@ -21,6 +21,7 @@ public class CtrlMA {
     public void initController(){
         frmMA.getBtnInicio().addActionListener(e -> mostrarV_Inicio()); //paneles INICIO
         frmMA.getBtnTrabajadores().addActionListener(e -> mostrarV_Trabajadores());// PANEL TRABAJADORES
+        frmMA.getBtn_reportes().addActionListener(e -> mostrarV_Reporte());
         frmMA.getBtn_info().addActionListener(e -> mostrarV_Info());
         frmMA.setVisible(true);
     }
@@ -33,6 +34,10 @@ public class CtrlMA {
         GenericDao  daotrabajadores = new DaoTrabajadoresImpl();       
         CtrlTrabajadores_MA ctrlT = new CtrlTrabajadores_MA(daotrabajadores);
         ctrlT.initController();
+    }
+    private void mostrarV_Reporte(){
+        CtrlReporte_MA ctrlReport = new CtrlReporte_MA();
+        ctrlReport.initController();
     }
     private void mostrarV_Info(){
         GenericDao daoInfo= new DaoInfoEmpresaImpl();

@@ -10,14 +10,13 @@ import javax.swing.table.DefaultTableModel;
 import pe.sanpedro.systemcv.dao.GenericDao;
 import pe.sanpedro.systemcv.dao.impl.DaoClienteImpl;
 import pe.sanpedro.systemcv.dao.impl.DaoDetallePedidoImpl;
-import pe.sanpedro.systemcv.dao.impl.DaoEspecieImpl;
-import pe.sanpedro.systemcv.dao.impl.DaoHorarioImpl;
+import pe.sanpedro.systemcv.dao.impl.DaoHorariosImpl;
 import pe.sanpedro.systemcv.dao.impl.DaoMascotaImpl;
 import pe.sanpedro.systemcv.dao.impl.DaoOrdenCitaImpl;
 import pe.sanpedro.systemcv.dao.impl.DaoOrdenPedidoImpl;
 import pe.sanpedro.systemcv.model.Cliente;
 import pe.sanpedro.systemcv.model.DetallePedido;
-import pe.sanpedro.systemcv.model.Horario;
+import pe.sanpedro.systemcv.model.Horarios;
 import pe.sanpedro.systemcv.model.Mascota;
 import pe.sanpedro.systemcv.model.OrdenCita;
 import pe.sanpedro.systemcv.model.OrdenPedido;
@@ -41,7 +40,7 @@ public class CtrlCitas_MR {
     public void initController() {
         this.daoclientes = new DaoClienteImpl();
         this.daomascotas = new DaoMascotaImpl();
-        this.daohorarios = new DaoHorarioImpl();
+        this.daohorarios = new DaoHorariosImpl();
         this.daoOrden = new DaoOrdenPedidoImpl();
         this.daoDetalle = new DaoDetallePedidoImpl();
         this.daoOrdenCita = new DaoOrdenCitaImpl();
@@ -136,9 +135,9 @@ public class CtrlCitas_MR {
         model.addColumn("Hora final");
         model.addColumn("Estado");
 
-        List<Horario> list = daohorarios.searchByDate(d);
+        List<Horarios> list = daohorarios.searchByDate(d);
         if (list != null) {
-            for (Horario h : list) {
+            for (Horarios h : list) {
                 Object[] fila = new Object[6];
                 fila[0] = h.getId_horario();
                 fila[1] = h.getTurno();
@@ -172,7 +171,7 @@ public class CtrlCitas_MR {
         int fila = -1;
         fila = pnlCita.getJTablaHorario().getSelectedRow();
         if (fila != -1) {
-            List<Horario> u = daohorarios.searchByDate(pnlCita.getDatepicker_dia().getDate());
+            List<Horarios> u = daohorarios.searchByDate(pnlCita.getDatepicker_dia().getDate());
             pnlCita.horario = u.get(fila);
             if (pnlCita.horario.getId_estado() != 2) {
 

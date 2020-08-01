@@ -1,5 +1,6 @@
 pe\sanpedro\systemcv\view\PnlEstetica_MC$2.class
 pe\sanpedro\systemcv\view\FrmMainCaja.class
+pe\sanpedro\systemcv\view\PnlConsultaGeneral_MC$1.class
 pe\sanpedro\systemcv\view\JdlgLoginA.class
 pe\sanpedro\systemcv\view\FrmLoginT$3.class
 pe\sanpedro\systemcv\view\PnlExamenes_MC.class
@@ -7,10 +8,13 @@ pe\sanpedro\systemcv\view\FrmMainFarmacia.class
 pe\sanpedro\systemcv\view\FrmMainAdmin.class
 pe\sanpedro\systemcv\dao\impl\DaoInfoEmpresaImpl.class
 pe\sanpedro\systemcv\model\Boleta.class
+pe\sanpedro\systemcv\dao\impl\DaoHorariosImpl.class
+pe\sanpedro\systemcv\view\PnlConsultaGeneral_MC.class
 pe\sanpedro\systemcv\controllers\CtrlMF.class
 run\test.class
 pe\sanpedro\systemcv\dao\impl\DaoEspecieImpl.class
 pe\sanpedro\systemcv\model\Admin.class
+pe\sanpedro\systemcv\dao\impl\DaoReporteImpl.class
 pe\sanpedro\systemcv\view\PnlInicio_MA.class
 pe\sanpedro\systemcv\controllers\CtrlTrabajadores_MA.class
 pe\sanpedro\systemcv\model\OrdenPedido.class
@@ -23,6 +27,7 @@ pe\sanpedro\systemcv\view\FrmMainCaja$1.class
 pe\sanpedro\systemcv\model\Servicios.class
 pe\sanpedro\systemcv\dto\Boleta.class
 pe\sanpedro\systemcv\view\FrmLoginT$1.class
+pe\sanpedro\systemcv\dto\Reporte.class
 pe\sanpedro\systemcv\dao\impl\DaoOrdenPedidoImpl.class
 pe\sanpedro\systemcv\controllers\CtrlMA.class
 pe\sanpedro\systemcv\model\Trabajadores.class
@@ -33,12 +38,16 @@ pe\sanpedro\systemcv\view\FrmLoginT$2.class
 pe\sanpedro\systemcv\model\Cliente.class
 pe\sanpedro\systemcv\controllers\CtrlEstetica_MC.class
 pe\sanpedro\systemcv\view\PnlTrabajadores_MA.class
+pe\sanpedro\systemcv\controllers\CtrlReporte_MA.class
 pe\sanpedro\systemcv\controllers\CtrlInfo_MA.class
 pe\sanpedro\systemcv\dao\impl\DaoRazaImpl.class
 pe\sanpedro\systemcv\view\FrmLoginT.class
 pe\sanpedro\systemcv\dao\GenericDao.class
+pe\sanpedro\systemcv\view\PnlReportes_MA.class
+pe\sanpedro\systemcv\view\PnlConsultaGeneral_MC$2.class
 pe\sanpedro\systemcv\controllers\CtrlInicio_MA.class
 pe\sanpedro\systemcv\view\PnlExamenes_MC$1.class
+pe\sanpedro\systemcv\controllers\CtrlConsultaGeneral_MC.class
 pe\sanpedro\systemcv\model\InfoEmpresa.class
 pe\sanpedro\systemcv\model\Raza.class
 pe\sanpedro\systemcv\controllers\CtrlExamenes_MC.class
@@ -55,5 +64,6 @@ pe\sanpedro\systemcv\dao\impl\DaoTrabajadoresImpl.class
 pe\sanpedro\systemcv\view\FrmMainRecepcion.class
 pe\sanpedro\systemcv\dao\impl\DaoMascotaImpl.class
 run\LoginApp.class
+pe\sanpedro\systemcv\model\Horarios.class
 pe\sanpedro\systemcv\controllers\CtrlClientes_MR.class
 pe\sanpedro\systemcv\view\PnlEstetica_MC$1.class

@@ -6,14 +6,14 @@ import javax.swing.JLabel;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import pe.sanpedro.systemcv.model.Cliente;
-import pe.sanpedro.systemcv.model.Horario;
+import pe.sanpedro.systemcv.model.Horarios;
 import pe.sanpedro.systemcv.model.Mascota;
 
 public class PnlCitas_MR extends javax.swing.JPanel {
 
     public Cliente cliente = null;
     public Mascota mascota = null;
-    public Horario horario = null;
+    public Horarios horario = null;
 
     public PnlCitas_MR() {
         initComponents();
