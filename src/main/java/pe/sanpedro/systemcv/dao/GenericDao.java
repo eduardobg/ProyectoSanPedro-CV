@@ -23,6 +23,9 @@ public interface GenericDao<T> {
     default void delete(int id) {
         throw new UnsupportedOperationException("No implementado");
     }
+    default void deleteall(int id) {
+        throw new UnsupportedOperationException("No implementado");
+    }
     default List<T> sel() {
         throw new UnsupportedOperationException("No implementado");
     }
@@ -60,7 +63,5 @@ public interface GenericDao<T> {
     default String getMessage(){
         throw new UnsupportedOperationException("No implementado");
     }
-    default void deleteall(int id) {
-        throw new UnsupportedOperationException("No implementado");
-    }
+  
 }
