@@ -48,13 +48,19 @@ public interface GenericDao<T> {
         throw new UnsupportedOperationException("No implementado");
     }
     
-    default List<T> searchBetween(LocalDate d1, LocalDate d2){
+    default List<T> searchBetween(int area,LocalDate d1, LocalDate d2){
         throw new UnsupportedOperationException("No implementado");
     }
     default List<T> searchByDate(LocalDate d){
         throw new UnsupportedOperationException("No implementado");
     }
+    default List<T> searchByDate2(String turno,LocalDate d){
+        throw new UnsupportedOperationException("No implementado");
+    }
     default String getMessage(){
+        throw new UnsupportedOperationException("No implementado");
+    }
+    default void deleteall(int id) {
         throw new UnsupportedOperationException("No implementado");
     }
 }
