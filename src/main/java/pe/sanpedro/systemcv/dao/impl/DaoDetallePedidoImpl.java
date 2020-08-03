@@ -72,6 +72,72 @@ public class DaoDetallePedidoImpl implements GenericDao<DetallePedido> {
     }
 
     @Override
+    public List<DetallePedido> sel() {
+        List<DetallePedido> lista = null;
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT ")
+                .append("id_orden,")
+                .append("detalle_pedido.id_med,")
+                .append("detalle_pedido.cantidad,")
+                .append("detalle_pedido.descrip,")
+                .append("detalle_pedido.precio,")
+                .append("detalle_pedido.subtotal ")
+                .append("FROM detalle_pedido INNER JOIN medicamentos ON detalle_pedido.id_med = medicamentos.id_med");
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            try (ResultSet rs = ps.executeQuery()) {
+                lista = new ArrayList();
+                while (rs.next()) {
+                    DetallePedido med = new DetallePedido();
+                    med.setId_orden(rs.getInt(1));
+                    med.setId_pro(rs.getInt(2));
+                    med.setCantidad(rs.getInt(3));
+                    med.setDescripcion(rs.getString(4));
+                    med.setPrecio(rs.getDouble(5));
+                    med.setSubtotal(rs.getDouble(6));
+                    lista.add(med);
+                }
+            } catch (SQLException e) {
+                mensaje = e.getMessage();
+            }
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
+        return lista;
+    }
+    @Override
+    public DetallePedido searchById(int id) {
+        DetallePedido med = new DetallePedido();
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT ")
+                .append("id_orden,")
+                .append("medicamentos.id_med,")
+                .append("detalle_pedido.cantidad,")
+                .append("detalle_pedido.descrip,")
+                .append("medicamentos.precio,")
+                .append("detalle_pedido.subtotal ")
+                .append("FROM detalle_pedido INNER JOIN medicamentos ON detalle_pedido.id_med = medicamentos.id_med WHERE id_orden=? ");
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    med.setId_orden(rs.getInt(1));
+                    med.setId_pro(rs.getInt(2));
+                    med.setCantidad(rs.getInt(3));
+                    med.setDescripcion(rs.getString(4));
+                    med.setPrecio(rs.getInt(5));
+                    med.setSubtotal(rs.getDouble(6));
+                }
+            } catch (SQLException e) {
+                mensaje = e.getMessage();
+            }
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
+        return med;
+    }
+    
     public List<DetallePedido> searchById2(int id) {
         List<DetallePedido> lista = null;
         String sql = "SELECT * FROM detalle_pedido WHERE id_orden = ?";
@@ -105,9 +171,7 @@ public class DaoDetallePedidoImpl implements GenericDao<DetallePedido> {
 
     @Override
     public String getMessage() {
-        return mensaje; 
+        return mensaje;
     }
-    
-    
 
 }
