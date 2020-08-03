@@ -20,7 +20,13 @@ public interface GenericDao<T> {
     default void update(T t) {
         throw new UnsupportedOperationException("No implementado");
     }
+    default void update2(int id, int estado) {
+        throw new UnsupportedOperationException("No implementado");
+    }
     default void delete(int id) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+    default void deleteall(int id) {
         throw new UnsupportedOperationException("No implementado");
     }
     default List<T> sel() {
@@ -35,13 +41,13 @@ public interface GenericDao<T> {
     default List<T> searchById2(int id) {
         throw new UnsupportedOperationException("No implementado");
     }
+    default T searchById3(int id) {
+        throw new UnsupportedOperationException("No implementado");
+    }
     default List<T> searchById3(int id, int id2) {
         throw new UnsupportedOperationException("No implementado");
     }
     default Integer  searchById4(int id, int id2) {
-        throw new UnsupportedOperationException("No implementado");
-    }
-    default void update2(int id, int estado) {
         throw new UnsupportedOperationException("No implementado");
     }
     default List<T> searchByQuery(String query) {
@@ -54,13 +60,17 @@ public interface GenericDao<T> {
         throw new UnsupportedOperationException("No implementado");
     }
     
-    default List<T> searchBetween(LocalDate d1, LocalDate d2){
+    default List<T> searchBetween(int area,LocalDate d1, LocalDate d2){
         throw new UnsupportedOperationException("No implementado");
     }
     default List<T> searchByDate(LocalDate d){
         throw new UnsupportedOperationException("No implementado");
     }
+    default List<T> searchByDate2(String turno,LocalDate d){
+        throw new UnsupportedOperationException("No implementado");
+    }
     default String getMessage(){
         throw new UnsupportedOperationException("No implementado");
     }
+  
 }

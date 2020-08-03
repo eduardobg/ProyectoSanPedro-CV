@@ -23,44 +23,6 @@ public class DaoOrdenPedidoImpl implements GenericDao<OrdenPedido> {
         this.conectaDb = new ConectaBD();
     }
 
-//    @Override
-//    public List<OrdenPedido> sel() {
-//        List<OrdenPedido> lista = null;
-//        StringBuilder sql = new StringBuilder();
-//        sql.append("SELECT ")
-//                .append("detalle_pedido.id_med,")
-//                .append("detalle_pedido.nombre,")               
-//                .append("detalle_pedido.cantidad,,")
-//                .append("medicamentos.presentacion,")
-//                .append("medicamentos.laboratorio ")
-//                .append("FROM ((orden_pedido ")
-//                .append("INNER JOIN detalle_pedido ON orden_pedido.id_pedido = detalle_pedido.id_orden) ")
-//                .append("INNER JOIN medicamentos ON orden_pedido.id_med = medicamentos.id_med) ");        
-//        try (Connection cn = conectaDb.conexionDB()) {
-//            PreparedStatement ps = cn.prepareStatement(sql.toString());           
-//            try (ResultSet rs = ps.executeQuery()) {
-//                    lista = new ArrayList();
-//                while (rs.next()) {
-//                    OrdenPedido med = new OrdenPedido();
-//                    med.set(rs.getString(1));
-//                    med.setNombre(rs.getString(2));
-//                    med.setF_elab(rs.getDate(3).toLocalDate());
-//                    med.setF_venci(rs.getDate(4).toLocalDate());
-//                    med.setPrecio(rs.getDouble(5));
-//                    med.setStock(rs.getInt(6));
-//                    med.setPresent(rs.getString(7));
-//                    med.setLab(rs.getString(8));
-//                    med.setDescrip(rs.getString(9));
-//                    lista.add(med);
-//                }
-//            }catch(SQLException e){
-//                mensaje = e.getMessage();
-//            }
-//        } catch (SQLException e) {
-//            mensaje = e.getMessage();
-//        }
-//        return lista;
-//    }
     @Override
     public Boolean insert(OrdenPedido t) {
         boolean ok = false;
@@ -124,6 +86,61 @@ public class DaoOrdenPedidoImpl implements GenericDao<OrdenPedido> {
         }
         return num_orden;
     }
+
+  
+    @Override
+    public OrdenPedido searchById3(int id) {
+        OrdenPedido orden = null;
+        String sql = "SELECT * FROM orden_pedido WHERE id_pedido = ? AND id_estado = 1";
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);         
+            try (ResultSet rs = ps.executeQuery()) {  
+                if (rs.next()) {
+                    orden = new OrdenPedido();
+                    orden.setId_orden(rs.getInt("id_pedido"));
+                    orden.setId_cliente(rs.getInt("id_cli"));
+                    orden.setDni(rs.getString("dni"));
+                    orden.setNombreCli(rs.getString("nombreC"));
+                    orden.setDirecCli(rs.getString("direc"));
+                    orden.setCantidad(rs.getInt("cantidad"));
+                    
+                }
+
+            } catch (Exception e) {
+                mensaje = e.getMessage();                
+            }
+
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            
+        }        
+        return orden;
+    }
+
+    @Override
+    public void update2(int id, int estado) {
+         String sql = "UPDATE orden_pedido SET id_estado = ? WHERE id_pedido = ? ";
+         try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, estado);
+            ps.setInt(2, id);          
+            int dml = ps.executeUpdate();
+            if (dml == 1) {
+                mensaje="Estado Actualizado";
+            } else {
+                mensaje="ERROR AL ACTUALIZAR";
+            }
+
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
+    }
+    
+   
+    
+    
+        
 
     @Override
     public List<OrdenPedido> sel() {
@@ -342,28 +359,7 @@ public class DaoOrdenPedidoImpl implements GenericDao<OrdenPedido> {
         return list;
     }
 
-    
 
-    
-
-    @Override
-    public void update2(int id, int estado) {
-         String sql = "UPDATE orden_pedido SET id_estado = ? WHERE id_pedido = ? ";
-         try (Connection cn = conectaDb.conexionDB()) {
-            PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setInt(1, estado);
-            ps.setInt(2, id);          
-            int dml = ps.executeUpdate();
-            if (dml == 1) {
-                mensaje="Estado Actualizado";
-            } else {
-                mensaje="ERROR AL ACTUALIZAR";
-            }
-
-        } catch (SQLException e) {
-            mensaje = e.getMessage();
-        }
-    }
     
     @Override
     public String getMessage() {

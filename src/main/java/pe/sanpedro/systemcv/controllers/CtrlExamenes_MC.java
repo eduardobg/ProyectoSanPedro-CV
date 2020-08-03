@@ -284,6 +284,7 @@ public class CtrlExamenes_MC {
             JRBeanCollectionDataSource jbcd = new JRBeanCollectionDataSource(lr);
             JasperPrint jp = JasperFillManager.fillReport(jr, pr, jbcd);
             JasperViewer.viewReport(jp,false);
+            initController();
         } catch (JRException e) {
             e.printStackTrace();
         }

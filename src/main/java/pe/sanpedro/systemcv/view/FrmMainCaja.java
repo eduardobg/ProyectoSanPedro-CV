@@ -34,11 +34,7 @@ public class FrmMainCaja extends javax.swing.JFrame {
 
     public JButton getBtn_inicio() {
         return btn_inicio;
-    }
-
-    public JButton getBtn_pagom() {
-        return btn_pagom;
-    }
+    }    
 
     
     @SuppressWarnings("unchecked")
@@ -51,7 +47,6 @@ public class FrmMainCaja extends javax.swing.JFrame {
         bnt_estetica = new javax.swing.JButton();
         bnt_examen = new javax.swing.JButton();
         bnt_pagor = new javax.swing.JButton();
-        btn_pagom = new javax.swing.JButton();
         Pnl_VP = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -71,11 +66,8 @@ public class FrmMainCaja extends javax.swing.JFrame {
         bnt_examen.setText("Exámenes Médicos");
         jPanel1.add(bnt_examen, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 150, 60));
 
-        bnt_pagor.setText("Pago Reserva");
-        jPanel1.add(bnt_pagor, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 130, 60));
-
-        btn_pagom.setText("Pago Medicamentos");
-        jPanel1.add(btn_pagom, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 170, 60));
+        bnt_pagor.setText("Pago de Ordenes");
+        jPanel1.add(bnt_pagor, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 150, 60));
 
         Pnl_VP.setLayout(new java.awt.CardLayout());
 
@@ -142,7 +134,6 @@ public class FrmMainCaja extends javax.swing.JFrame {
     private javax.swing.JButton bnt_pagor;
     private javax.swing.JButton btn_consulta;
     private javax.swing.JButton btn_inicio;
-    private javax.swing.JButton btn_pagom;
     public javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
