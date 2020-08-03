@@ -20,6 +20,9 @@ public interface GenericDao<T> {
     default void update(T t) {
         throw new UnsupportedOperationException("No implementado");
     }
+    default void update2(int id, int estado) {
+        throw new UnsupportedOperationException("No implementado");
+    }
     default void delete(int id) {
         throw new UnsupportedOperationException("No implementado");
     }
@@ -33,6 +36,9 @@ public interface GenericDao<T> {
         throw new UnsupportedOperationException("No implementado");
     }
     default List<T> searchById2(int id) {
+        throw new UnsupportedOperationException("No implementado");
+    }
+    default T searchById3(int id) {
         throw new UnsupportedOperationException("No implementado");
     }
     default List<T> searchById3(int id, int id2) {

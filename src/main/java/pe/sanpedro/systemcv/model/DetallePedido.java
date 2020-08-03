@@ -13,7 +13,7 @@ public class DetallePedido {
     private double precio;
     private double subtotal;
     
-    public void DetallePedido(){}
+    public  DetallePedido(){}
     //Para crear Servicios
     public DetallePedido(Integer id_orden, Integer id_pro, Integer cantidad, String descripcion, double precio, double subtotal) {
         this.id_orden = id_orden;

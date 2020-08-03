@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import pe.sanpedro.systemcv.dao.GenericDao;
 import pe.sanpedro.systemcv.model.OrdenPedido;
 import pe.sanpedro.systemcv.util.ConectaBD;
@@ -84,7 +86,61 @@ public class DaoOrdenPedidoImpl implements GenericDao<OrdenPedido>{
         }        
         return num_orden;
     }
+
+  
+    @Override
+    public OrdenPedido searchById3(int id) {
+        OrdenPedido orden = null;
+        String sql = "SELECT * FROM orden_pedido WHERE id_pedido = ? AND id_estado = 1";
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);         
+            try (ResultSet rs = ps.executeQuery()) {  
+                if (rs.next()) {
+                    orden = new OrdenPedido();
+                    orden.setId_orden(rs.getInt("id_pedido"));
+                    orden.setId_cliente(rs.getInt("id_cli"));
+                    orden.setDni(rs.getString("dni"));
+                    orden.setNombreCli(rs.getString("nombreC"));
+                    orden.setDirecCli(rs.getString("direc"));
+                    orden.setCantidad(rs.getInt("cantidad"));
+                    
+                }
+
+            } catch (Exception e) {
+                mensaje = e.getMessage();                
+            }
+
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            
+        }        
+        return orden;
+    }
+
+    @Override
+    public void update2(int id, int estado) {
+         String sql = "UPDATE orden_pedido SET id_estado = ? WHERE id_pedido = ? ";
+         try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, estado);
+            ps.setInt(2, id);          
+            int dml = ps.executeUpdate();
+            if (dml == 1) {
+                mensaje="Estado Actualizado";
+            } else {
+                mensaje="ERROR AL ACTUALIZAR";
+            }
+
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
+    }
     
+   
+    
+    
+        
 
     @Override
     public String getMessage() {
