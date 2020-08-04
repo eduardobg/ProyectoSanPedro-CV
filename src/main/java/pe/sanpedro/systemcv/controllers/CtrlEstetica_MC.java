@@ -280,9 +280,7 @@ public class CtrlEstetica_MC {
     }
 
     private void cambiarCliente() {
-        pnlEstetica.limpiarCliente();
-        pnlEstetica.limpiarMascota();
-        pnlEstetica.limpiarServicio();
+        initController();
     }
 
 }

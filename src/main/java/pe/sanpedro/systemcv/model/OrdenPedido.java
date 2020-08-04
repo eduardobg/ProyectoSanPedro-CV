@@ -1,4 +1,3 @@
-
 package pe.sanpedro.systemcv.model;
 
 /**
@@ -6,6 +5,7 @@ package pe.sanpedro.systemcv.model;
  * @author Mysk
  */
 public class OrdenPedido {
+
     private Integer id_orden;
     private Integer id_cliente;
     private Integer id_tipoP;
@@ -15,8 +15,15 @@ public class OrdenPedido {
     private Integer cantidad;
     private Integer id_estado;
     private String nombEstado;
-    
-    public OrdenPedido(){}
+    private Integer id_med;
+    private String descrip;
+    private double precio;
+    private double subtotal;
+    private String presen;
+    private String labo;
+
+    public OrdenPedido() {
+    }
 
     public OrdenPedido(Integer id_cliente, Integer id_tipoP, String dni, String nombreCli, String direcCli, Integer cantidad, Integer id_estado) {
         this.id_cliente = id_cliente;
@@ -25,10 +32,25 @@ public class OrdenPedido {
         this.nombreCli = nombreCli;
         this.direcCli = direcCli;
         this.cantidad = cantidad;
-        this.id_estado = id_estado;   
+        this.id_estado = id_estado;
     }
-    
-    
+
+    public OrdenPedido(Integer id_orden, Integer id_cliente, Integer id_tipoP, String dni, String nombreCli, String direcCli, Integer cantidad, Integer id_estado, String nombEstado, Integer id_med, String descrip, double precio, double subtotal, String presen, String labo) {
+        this.id_orden = id_orden;
+        this.id_cliente = id_cliente;
+        this.id_tipoP = id_tipoP;
+        this.dni = dni;
+        this.nombreCli = nombreCli;
+        this.direcCli = direcCli;
+        this.cantidad = cantidad;
+        this.id_estado = id_estado;
+        this.nombEstado = nombEstado;
+        this.id_med = id_med;
+        this.descrip = descrip;
+        this.precio = precio;
+        this.presen = presen;
+        this.labo = labo;
+    }
 
     public Integer getId_orden() {
         return id_orden;
@@ -101,5 +123,53 @@ public class OrdenPedido {
     public void setNombEstado(String nombEstado) {
         this.nombEstado = nombEstado;
     }
-    
+
+    public Integer getId_med() {
+        return id_med;
+    }
+
+    public void setId_med(Integer id_med) {
+        this.id_med = id_med;
+    }
+
+    public String getDescrip() {
+        return descrip;
+    }
+
+    public void setDescrip(String descrip) {
+        this.descrip = descrip;
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        this.precio = precio;
+    }
+
+    public double getSubtotal() {
+        return subtotal;
+    }
+
+    public void setSubtotal(double subtotal) {
+        this.subtotal = subtotal;
+    }
+
+    public String getPresen() {
+        return presen;
+    }
+
+    public void setPresen(String presen) {
+        this.presen = presen;
+    }
+
+    public String getLabo() {
+        return labo;
+    }
+
+    public void setLabo(String labo) {
+        this.labo = labo;
+    }
+
 }

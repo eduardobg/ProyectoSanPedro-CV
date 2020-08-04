@@ -58,7 +58,7 @@ public class CtrlPagoOrden_MC {
         total=0;
         daoPagoOrden = new DaoOrdenPedidoImpl();
         int id_orden = Integer.parseInt(pnlPagoOrden.getTxt_buscarOrden().getText());
-        OrdenPedido orden = (OrdenPedido) daoPagoOrden.searchById(id_orden);
+        OrdenPedido orden = (OrdenPedido) daoPagoOrden.searchById3(id_orden);
         if (orden!=null) {
             pnlPagoOrden.getTxr_idOrden().setText(String.valueOf(orden.getId_orden()));
             pnlPagoOrden.getTxt_idCli().setText(String.valueOf(orden.getId_cliente()));

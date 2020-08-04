@@ -218,7 +218,7 @@ class CtrlMascotas_MR {
             if (pnlMascotas.mascota.getId_especie() == 1) {
                 pnlMascotas.getJComboBoxRaza().setSelectedIndex(pnlMascotas.mascota.getId_raza());
             } else {
-                pnlMascotas.getJComboBoxRaza().setSelectedIndex(pnlMascotas.mascota.getId_raza() - 2);
+                pnlMascotas.getJComboBoxRaza().setSelectedIndex(pnlMascotas.mascota.getId_raza()-5);
             }
             pnlMascotas.getJtxtEdad().setText(pnlMascotas.mascota.getEdad() + "");
 
