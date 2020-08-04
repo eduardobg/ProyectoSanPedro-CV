@@ -32,6 +32,9 @@ public interface GenericDao<T> {
     default List<T> sel() {
         throw new UnsupportedOperationException("No implementado");
     }
+    default List<T> sel1() {
+        throw new UnsupportedOperationException("No implementado"); //agregue
+    }
     default T searchById(int id) {
         throw new UnsupportedOperationException("No implementado");
     }

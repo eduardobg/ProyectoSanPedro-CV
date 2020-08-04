@@ -61,7 +61,8 @@ public class CtrlLogin {
                     case 3: CtrlMF ctrlMF = new CtrlMF(); //Para inicar el Main de Farmacia
                             ctrlMF.initController(dni);
                             break;  
-                    case 4: System.out.println("Todavia no implementado");
+                    case 4: CtrlMAL ctrlMAL = new CtrlMAL();
+                            ctrlMAL.initController(dni);
                             break;        
                 }                               
                 
