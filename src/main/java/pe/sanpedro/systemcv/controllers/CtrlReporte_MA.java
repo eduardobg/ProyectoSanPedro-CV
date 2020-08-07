@@ -1,7 +1,6 @@
 package pe.sanpedro.systemcv.controllers;
 
 import java.awt.CardLayout;
-import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.time.LocalDate;
@@ -9,9 +8,6 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.util.HSSFColor;
-import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.FillPatternType;
 import org.apache.poi.ss.usermodel.HorizontalAlignment;

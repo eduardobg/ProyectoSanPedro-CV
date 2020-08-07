@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import pe.sanpedro.systemcv.dao.GenericDao;
 import pe.sanpedro.systemcv.model.Medicamentos;
 import pe.sanpedro.systemcv.util.ConectaBD;
@@ -87,7 +85,7 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos> {
             ps.setString(1, query);
             try (ResultSet rs = ps.executeQuery()) {
                 med = new Medicamentos();
-                while (rs.next()) {
+                if (rs.next()) {                  
                     med.setID_Med(rs.getString(1));
                     med.setNombre(rs.getString(2));
                     med.setF_elab(rs.getDate(3).toLocalDate());
@@ -211,7 +209,7 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos> {
         }
         return med;
 
-    }
+    }    
 
     @Override
     public void update2(int cant, int idmed) {
@@ -286,16 +284,15 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos> {
     }
 
     @Override
-    public List<Medicamentos> searchBetween(int area, LocalDate d1, LocalDate d2) {
+    public List<Medicamentos> searchByDate(LocalDate d) {
         List<Medicamentos> lista = null;
-        String sql = "SELECT * FROM medicamentos WHERE fecha_ven BETWEEN ? AND ?";
+        String sql = "SELECT * FROM medicamentos WHERE fecha_ven <= ?";
         try (Connection cn = conectaDb.conexionDB()) {
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1, String.valueOf(d1));
-            ps.setString(2, String.valueOf(d2));
+            ps.setString(1, String.valueOf(d));            
             try (ResultSet rs = ps.executeQuery()) {
                 lista = new ArrayList();
-                if (rs.next()) {
+                while (rs.next()) {
                     Medicamentos med = new Medicamentos();
                     med.setID_Med(rs.getString("id_med"));
                     med.setNombre(rs.getString("nombre"));
@@ -318,8 +315,8 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos> {
 
         }
         return lista;
-
     }
+    
 
     @Override
     public String getMessage() {

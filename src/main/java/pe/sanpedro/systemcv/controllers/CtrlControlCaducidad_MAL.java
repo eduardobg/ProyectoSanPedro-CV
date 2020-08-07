@@ -73,7 +73,8 @@ public class CtrlControlCaducidad_MAL {
     private void filtrar() {
         if (pnlControl.getDate().getDate() != null) {
             daoControl = new DaoMedicamentosImpl();
-            lista = daoControl.searchBetween(0, LocalDate.now(), pnlControl.getDate().getDate());
+           // lista = daoControl.searchBetween(0, LocalDate.now(), pnlControl.getDate().getDate());
+            lista = daoControl.searchByDate(pnlControl.getDate().getDate());
             refrescarTabla(lista);
             pnlControl.getBtn_generarFichero().setEnabled(true);
             pnlControl.getDate().setEnabled(false);
