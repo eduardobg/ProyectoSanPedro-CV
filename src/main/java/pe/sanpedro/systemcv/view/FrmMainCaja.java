@@ -34,11 +34,7 @@ public class FrmMainCaja extends javax.swing.JFrame {
 
     public JButton getBtn_inicio() {
         return btn_inicio;
-    }
-
-    public JButton getBtn_pagom() {
-        return btn_pagom;
-    }
+    }    
 
     
     @SuppressWarnings("unchecked")
@@ -51,7 +47,6 @@ public class FrmMainCaja extends javax.swing.JFrame {
         bnt_estetica = new javax.swing.JButton();
         bnt_examen = new javax.swing.JButton();
         bnt_pagor = new javax.swing.JButton();
-        btn_pagom = new javax.swing.JButton();
         Pnl_VP = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -71,11 +66,8 @@ public class FrmMainCaja extends javax.swing.JFrame {
         bnt_examen.setText("Exámenes Médicos");
         jPanel1.add(bnt_examen, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 0, 150, 60));
 
-        bnt_pagor.setText("Pago Reserva");
-        jPanel1.add(bnt_pagor, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 130, 60));
-
-        btn_pagom.setText("Pago Medicamentos");
-        jPanel1.add(btn_pagom, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 0, 170, 60));
+        bnt_pagor.setText("Pago de Ordenes");
+        jPanel1.add(bnt_pagor, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 0, 150, 60));
 
         Pnl_VP.setLayout(new java.awt.CardLayout());
 
@@ -103,37 +95,7 @@ public class FrmMainCaja extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMainCaja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMainCaja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMainCaja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMainCaja.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMainCaja().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JPanel Pnl_VP;
@@ -142,7 +104,6 @@ public class FrmMainCaja extends javax.swing.JFrame {
     private javax.swing.JButton bnt_pagor;
     private javax.swing.JButton btn_consulta;
     private javax.swing.JButton btn_inicio;
-    private javax.swing.JButton btn_pagom;
     public javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables

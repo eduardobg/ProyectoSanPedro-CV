@@ -272,6 +272,7 @@ public class CtrlEstetica_MC {
             JRBeanCollectionDataSource jbcd = new JRBeanCollectionDataSource(lr);
             JasperPrint jp = JasperFillManager.fillReport(jr, pr, jbcd);
             JasperViewer.viewReport(jp,false);
+            initController();
         } catch (JRException e) {
             e.printStackTrace();
         }
@@ -279,9 +280,7 @@ public class CtrlEstetica_MC {
     }
 
     private void cambiarCliente() {
-        pnlEstetica.limpiarCliente();
-        pnlEstetica.limpiarMascota();
-        pnlEstetica.limpiarServicio();
+        initController();
     }
 
 }

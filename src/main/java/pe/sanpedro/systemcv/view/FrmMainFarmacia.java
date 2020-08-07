@@ -5,6 +5,8 @@
  */
 package pe.sanpedro.systemcv.view;
 
+import javax.swing.JButton;
+
 /**
  *
  * @author Mysk
@@ -16,6 +18,23 @@ public class FrmMainFarmacia extends javax.swing.JFrame {
      */
     public FrmMainFarmacia() {
         initComponents();
+        setLocationRelativeTo(null);
+    }
+
+    public JButton getBtnInicio() {
+        return jbtn_inicio;
+    }
+
+    public JButton getBtnMedicamentos() {
+        return jbtn_medicamentos;
+    }
+
+    public JButton getBtnOrdenVenta() {
+        return jbtn_ordenventa;
+    }
+
+    public JButton getBtnDespacharPedidos() {
+        return jbtn_despacharpedidos;
     }
 
     /**
@@ -27,68 +46,77 @@ public class FrmMainFarmacia extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        Pnl_VP = new javax.swing.JPanel();
+        jPanel1 = new javax.swing.JPanel();
+        jbtn_inicio = new javax.swing.JButton();
+        jbtn_despacharpedidos = new javax.swing.JButton();
+        jbtn_medicamentos = new javax.swing.JButton();
+        jbtn_ordenventa = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Aqui vas a crear tus paneles");
+        Pnl_VP.setLayout(new java.awt.CardLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jbtn_inicio.setText("Inicio");
+        jbtn_inicio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbtn_inicioActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jbtn_inicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 160, 50));
+
+        jbtn_despacharpedidos.setText("Despachar Pedidos");
+        jPanel1.add(jbtn_despacharpedidos, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 0, 210, 50));
+
+        jbtn_medicamentos.setText("Medicamentos");
+        jPanel1.add(jbtn_medicamentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 0, 210, 50));
+
+        jbtn_ordenventa.setText("Orden de Venta");
+        jPanel1.add(jbtn_ordenventa, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 0, 210, 50));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(73, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(165, 165, 165))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Pnl_VP, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 986, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 229, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(123, 123, 123)
-                .addComponent(jLabel1)
-                .addContainerGap(161, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Pnl_VP, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jbtn_inicioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtn_inicioActionPerformed
+
+    }//GEN-LAST:event_jbtn_inicioActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmMainFarmacia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmMainFarmacia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmMainFarmacia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmMainFarmacia.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmMainFarmacia().setVisible(true);
-            }
-        });
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    public static javax.swing.JPanel Pnl_VP;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton jbtn_despacharpedidos;
+    private javax.swing.JButton jbtn_inicio;
+    private javax.swing.JButton jbtn_medicamentos;
+    private javax.swing.JButton jbtn_ordenventa;
     // End of variables declaration//GEN-END:variables
 }

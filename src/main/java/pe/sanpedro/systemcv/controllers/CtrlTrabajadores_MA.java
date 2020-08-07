@@ -166,7 +166,6 @@ public class CtrlTrabajadores_MA {
       
     }
     private void cancelar(){
-        pnlTrabajadores.limpiarEspacios();
-        pnlTrabajadores.getTxt_buscardni().requestFocus();
+        initController();
     }
 }

@@ -23,7 +23,6 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
     public DaoMascotaImpl() {
         this.conectaDb = new ConectaBD();
     }
-   
 
     @Override
     public List<Mascota> searchById2(int id) {
@@ -34,6 +33,7 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
                 .append("mascotas.nombre,")
                 .append("especie.id_especie,")
                 .append("especie.nombre,")
+                .append("raza.id_raza,")
                 .append("raza.nombre,")
                 .append("edad ")
                 .append("FROM ((mascotas ")
@@ -53,13 +53,14 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
                     mascota.setNom_mascota(rs.getString(2));
                     mascota.setId_especie(rs.getInt(3));
                     mascota.setNom_especie(rs.getString(4));
-                    mascota.setNom_raza(rs.getString(5));
-                    mascota.setEdad(rs.getInt(6));
+                    mascota.setId_raza(rs.getInt(5));
+                    mascota.setNom_raza(rs.getString(6));
+                    mascota.setEdad(rs.getInt(7));
 
                     list.add(mascota);
 
                 }
-            }catch(SQLException e){
+            } catch (SQLException e) {
                 mensaje = e.getMessage();
             }
         } catch (SQLException e) {
@@ -71,20 +72,20 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
 
     @Override
     public Mascota searchByQuery2(String query) {
-        Mascota mascota =null;
+        Mascota mascota = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
                 .append("id_mascota,")
                 .append("mascotas.nombre,")
                 .append("especie.nombre,")
-                .append("raza.nombre,")        
+                .append("raza.nombre,")
                 .append("edad ")
                 .append("FROM ((mascotas ")
                 .append("INNER JOIN especie ON mascotas.id_especie = especie.id_especie) ")
                 .append("INNER JOIN raza ON mascotas.id_raza = raza.id_raza) ")
                 .append("WHERE mascotas.nombre = ? ");
         try (Connection cn = conectaDb.conexionDB()) {
-            PreparedStatement ps = cn.prepareStatement(sql.toString());            
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, query);
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -92,10 +93,10 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
                     mascota.setId_mascota(rs.getInt(1));
                     mascota.setNom_mascota(rs.getString(2));
                     mascota.setNom_especie(rs.getString(3));
-                    mascota.setNom_raza(rs.getString(4)); 
-                    mascota.setEdad(rs.getInt(5)); 
+                    mascota.setNom_raza(rs.getString(4));
+                    mascota.setEdad(rs.getInt(5));
                 }
-            }catch(SQLException e){
+            } catch (SQLException e) {
                 mensaje = e.getMessage();
             }
         } catch (SQLException e) {
@@ -106,21 +107,21 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
 
     @Override
     public Mascota searchById(int id) {
-        Mascota mascota =null;
+        Mascota mascota = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
-                .append("id_especie ")                           
-                .append("FROM mascotas ")               
+                .append("id_especie ")
+                .append("FROM mascotas ")
                 .append("WHERE id_mascota = ? ");
         try (Connection cn = conectaDb.conexionDB()) {
-            PreparedStatement ps = cn.prepareStatement(sql.toString());            
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, String.valueOf(id));
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
                     mascota = new Mascota();
-                    mascota.setId_especie(rs.getInt(1));                                      
+                    mascota.setId_especie(rs.getInt(1));
                 }
-            }catch(SQLException e){
+            } catch (SQLException e) {
                 mensaje = e.getMessage();
             }
         } catch (SQLException e) {
@@ -128,15 +129,12 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
         }
         return mascota;
     }
-    
-    
 
     @Override
     public String getMessage() {
         return mensaje;
     }
 
-    
     @Override
     public void deleteall(int id) {
         StringBuilder sql = new StringBuilder();
@@ -232,7 +230,7 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
             mensaje = e.getMessage();
         }
 
-        System.out.println(mensaje);
+       
     }
 
     @Override
@@ -262,7 +260,6 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
         } catch (SQLException e) {
             mensaje = e.getMessage();
         }
-        System.out.println(mensaje);
     }
 
     @Override
@@ -295,7 +292,6 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
         } catch (SQLException e) {
             mensaje = e.getMessage();
         }
-        System.out.println(mensaje);
         return ok;
     }
 

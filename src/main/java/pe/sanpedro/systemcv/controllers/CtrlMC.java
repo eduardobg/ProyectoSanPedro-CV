@@ -20,6 +20,7 @@ public class CtrlMC {
         frmMC.getBtn_consulta().addActionListener(e -> mostrarV_Consulta());
         frmMC.getBnt_estetica().addActionListener(e -> mostrarV_Estetica());
         frmMC.getBnt_examen().addActionListener(e -> mostrarV_Examenes());
+        frmMC.getBnt_pagor().addActionListener(e -> mostrarV_PagoOrdenes());
         frmMC.setVisible(true);
     }
     private void mostrarV_Inicio(String dni){
@@ -37,5 +38,9 @@ public class CtrlMC {
     private void mostrarV_Examenes(){
         CtrlExamenes_MC ctrlExamenes = new CtrlExamenes_MC();
        ctrlExamenes.initController();
+    }
+    private void mostrarV_PagoOrdenes(){
+        CtrlPagoOrden_MC ctrlPago = new CtrlPagoOrden_MC();
+        ctrlPago.initController();
     }
 }

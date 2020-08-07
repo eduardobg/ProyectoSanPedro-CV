@@ -6,7 +6,9 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import pe.sanpedro.systemcv.dao.GenericDao;
+import pe.sanpedro.systemcv.dao.impl.DaoTrabajadoresImpl;
 import pe.sanpedro.systemcv.model.Admin;
+import pe.sanpedro.systemcv.view.FrmLoginT;
 import pe.sanpedro.systemcv.view.FrmMainAdmin;
 import pe.sanpedro.systemcv.view.PnlInicio_MA;
 
@@ -48,6 +50,10 @@ public class CtrlInicio_MA {
         
     }
     private void cerrarSesion(){
-        System.exit(0);
+       CtrlMA.frmMA.dispose();
+       GenericDao daotrab = new DaoTrabajadoresImpl();
+       FrmLoginT  frmlogin = new FrmLoginT();
+       CtrlLogin ctrl = new CtrlLogin( daotrab, frmlogin);
+       ctrl.initControllerT();
     }
 }

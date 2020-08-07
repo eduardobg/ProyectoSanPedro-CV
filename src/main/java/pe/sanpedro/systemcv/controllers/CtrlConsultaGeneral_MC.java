@@ -179,7 +179,7 @@ public class CtrlConsultaGeneral_MC {
         Object ob2 = pnlConsultaG.getJtbl2().getModel().getValueAt(pnlConsultaG.getJtbl2().getSelectedRow(), 2);
         Object ob3 = pnlConsultaG.getJtbl2().getModel().getValueAt(pnlConsultaG.getJtbl2().getSelectedRow(), 4);
         Object ob4 = pnlConsultaG.getJtbl2().getModel().getValueAt(pnlConsultaG.getJtbl2().getSelectedRow(), 5);
-        if (!String.valueOf(ob4).equalsIgnoreCase("No Disponible")){
+        if (!String.valueOf(ob4).equalsIgnoreCase("Ocupado")){
             pnlConsultaG.getTxt_idH().setText(String.valueOf(ob));
             pnlConsultaG.getTxt_nombH().setText(String.valueOf(ob3));
             pnlConsultaG.getTxt_turnoH().setText(String.valueOf(ob2));
@@ -272,6 +272,7 @@ public class CtrlConsultaGeneral_MC {
             JRBeanCollectionDataSource jbcd = new JRBeanCollectionDataSource(lr);
             JasperPrint jp = JasperFillManager.fillReport(jr, pr, jbcd);
             JasperViewer.viewReport(jp,false);
+            initController();
         } catch (JRException e) {
             e.printStackTrace();
         }
