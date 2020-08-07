@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pe.sanpedro.systemcv.controllers;
 
 import java.awt.CardLayout;
@@ -77,6 +72,7 @@ public class CtrlDespacharPedidos_MF {
             pnlDespacharPedidos.getTxtNombre().setText("");
             pnlDespacharPedidos.getTxtDNI().setText("");
             pnlDespacharPedidos.getTxtEstado().setText("");
+            ((DefaultTableModel) pnlDespacharPedidos.getJTableMedicamentos().getModel()).setNumRows(0);
         } else {
             refrescarOrdenPedido(lista);
         }
@@ -174,7 +170,7 @@ public class CtrlDespacharPedidos_MF {
     }
 
     private void iniciarDespacho() {
-        if (pnlDespacharPedidos.getJTableMedicamentos().getSelectedRow() != -1) {
+        if (pnlDespacharPedidos.getJTableMedicamentos().getRowCount()!=0) {
             if (pnlDespacharPedidos.getTxtEstado().getText().equals("Pagado")) {
                 daoDespachar = new DaoOrdenPedidoImpl();
                 int num = Integer.parseInt(pnlDespacharPedidos.getTxtNumOrd().getText());

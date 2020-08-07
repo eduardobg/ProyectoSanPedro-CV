@@ -140,7 +140,7 @@ public class DaoTrabajadoresImpl implements GenericDao<Trabajadores> {
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
                 employee = new Trabajadores();
-                while (rs.next()) {
+                if (rs.next()) {
                     employee.setId(rs.getInt("id_trab"));
                     employee.setDni(rs.getString("dni"));
                     employee.setNombre(rs.getString("nombre"));
@@ -166,8 +166,7 @@ public class DaoTrabajadoresImpl implements GenericDao<Trabajadores> {
 
     @Override
     public List<Trabajadores> searchByQuery(String query) {
-        List<Trabajadores> list = new ArrayList();
-        //String sql = "SELECT * FROM trabajadores WHERE tipo = ? ";
+        List<Trabajadores> list = new ArrayList();       
         String sql = "SELECT * FROM (trabajadores INNER JOIN tipo_trabajadores ON trabajadores.tipo = tipo_trabajadores.id_tipo) WHERE tipo = ? ";
         try (Connection cn = conectaDb.conexionDB()) {
             PreparedStatement ps = cn.prepareStatement(sql);
@@ -210,7 +209,7 @@ public class DaoTrabajadoresImpl implements GenericDao<Trabajadores> {
             ps.setString(1, query);
             try (ResultSet rs = ps.executeQuery()) {
                 employee = new Trabajadores();
-                while (rs.next()) {
+                if (rs.next()) {
                     employee.setId(rs.getInt("id_trab"));
                     employee.setDni(rs.getString("dni"));
                     employee.setNombre(rs.getString("nombre"));

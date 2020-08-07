@@ -124,40 +124,6 @@ public class DaoDetallePedidoImpl implements GenericDao<DetallePedido> {
         }
         return lista;
     }
-//    
-//    @Override
-//    public List<DetallePedido> sel1() {
-//        List<DetallePedido> lista = null;
-//        StringBuilder sql = new StringBuilder();
-//        sql.append("SELECT ")
-//                .append("detalle_pedido.id_orden,")
-//                .append("detalle_pedido.id_med,")
-//                .append("detalle_pedido.descrip,")
-//                .append("medicamentos.precio,")
-//                .append("medicamentos.presen ")
-//                .append("FROM detalle_pedido INNER JOIN medicamentos ON detalle_pedido.id_med = medicamentos.id_med");
-//        try (Connection cn = conectaDb.conexionDB()) {
-//            PreparedStatement ps = cn.prepareStatement(sql.toString());
-//            try (ResultSet rs = ps.executeQuery()) {
-//                lista = new ArrayList();
-//                while (rs.next()) {
-//                    DetallePedido m = new DetallePedido();
-//                    m.setId_orden(rs.getInt(1));
-//                    m.setId_pro(rs.getInt(2));
-//                    m.setDescripcion(rs.getString(3));
-//                    m.setPrecio(rs.getDouble(4));
-//                    m.setPresentacion(rs.getString(5));
-//                    lista.add(m);
-//                }
-//            } catch (SQLException e) {
-//                mensaje = e.getMessage();
-//            }
-//        } catch (SQLException e) {
-//            mensaje = e.getMessage();
-//        }
-//        return lista;
-//    }
-    
     @Override
     public DetallePedido searchById(int id) {
         DetallePedido med = new DetallePedido();
@@ -174,7 +140,7 @@ public class DaoDetallePedidoImpl implements GenericDao<DetallePedido> {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
+                if (rs.next()) {
                     med.setId_orden(rs.getInt(1));
                     med.setId_pro(rs.getInt(2));
                     med.setCantidad(rs.getInt(3));
@@ -239,7 +205,7 @@ public class DaoDetallePedidoImpl implements GenericDao<DetallePedido> {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
+                if (rs.next()) {
                     m.setId_orden(rs.getInt(1));
                     m.setId_pro(rs.getInt(2));
                     m.setDescripcion(rs.getString(3));

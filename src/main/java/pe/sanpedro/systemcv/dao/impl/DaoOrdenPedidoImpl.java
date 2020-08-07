@@ -49,11 +49,9 @@ public class DaoOrdenPedidoImpl implements GenericDao<OrdenPedido> {
             int dml = ps.executeUpdate();
             if (dml == 1) {
                 ok = true;
-                mensaje = "INSERTADO CORRECTAMENTE";
-                System.out.println("INSERTADO CORRECTAMENTE");
+                mensaje = "INSERTADO CORRECTAMENTE";                
             } else {
-                mensaje = "ERROR AL INSERTAR";
-                System.out.println("ERROR AL INSERTAR");
+                mensaje = "ERROR AL INSERTAR";                
             };
         } catch (SQLException e) {
             mensaje = e.getMessage();
@@ -300,7 +298,7 @@ public class DaoOrdenPedidoImpl implements GenericDao<OrdenPedido> {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, dni);
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
+                if (rs.next()) {
                     med = new OrdenPedido();
                     med.setId_orden(rs.getInt(1));
                     med.setId_cliente(rs.getInt(2));
@@ -343,7 +341,7 @@ public class DaoOrdenPedidoImpl implements GenericDao<OrdenPedido> {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setInt(1, id);
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
+                if (rs.next()) {
                     med.setId_med(rs.getInt(1));
                     med.setCantidad(rs.getInt(2));
                     med.setDescrip(rs.getString(3));
