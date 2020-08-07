@@ -87,7 +87,7 @@ public class CtrlOrdenVenta_MF {
                 totalS = totalS + subtotal;
                 pnlOrdenVenta.getTxtTotal().setText(String.valueOf(totalS));  
             }else{
-                JOptionPane.showMessageDialog(null, "No Suficiente Stock para la cantidad demandada");
+                JOptionPane.showMessageDialog(null, "No hay suficiente stock");
             }           
             
         } else {
