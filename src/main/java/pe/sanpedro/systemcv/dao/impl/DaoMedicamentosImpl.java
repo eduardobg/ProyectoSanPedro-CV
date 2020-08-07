@@ -1,4 +1,3 @@
-
 package pe.sanpedro.systemcv.dao.impl;
 
 import java.sql.Connection;
@@ -16,34 +15,34 @@ import pe.sanpedro.systemcv.util.ConectaBD;
  *
  * @author alons
  */
-public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
-    
+public class DaoMedicamentosImpl implements GenericDao<Medicamentos> {
+
     private final ConectaBD conectaDb;
     private String mensaje;
 
     public DaoMedicamentosImpl() {
         this.conectaDb = new ConectaBD();
     }
-    
+
     @Override
     public List<Medicamentos> sel() {
         List<Medicamentos> lista = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
                 .append("id_med,")
-                .append("nombre,")               
+                .append("nombre,")
                 .append("fecha_elab,")
                 .append("fecha_ven,")
-                .append("precio,")  
-                .append("stock,") 
-                .append("presen,")               
+                .append("precio,")
+                .append("stock,")
+                .append("presen,")
                 .append("labo,")
                 .append("descrip ")
-                .append("FROM medicamentos ")    ;         
+                .append("FROM medicamentos ");
         try (Connection cn = conectaDb.conexionDB()) {
-            PreparedStatement ps = cn.prepareStatement(sql.toString());           
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
             try (ResultSet rs = ps.executeQuery()) {
-                    lista = new ArrayList();
+                lista = new ArrayList();
                 while (rs.next()) {
                     Medicamentos med = new Medicamentos();
                     med.setID_Med(rs.getString(1));
@@ -57,7 +56,7 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
                     med.setDescrip(rs.getString(9));
                     lista.add(med);
                 }
-            }catch(SQLException e){
+            } catch (SQLException e) {
                 mensaje = e.getMessage();
             }
         } catch (SQLException e) {
@@ -65,25 +64,25 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
         }
         return lista;
     }
-    
+
     @Override
     public Medicamentos searchByQuery2(String query) {
         Medicamentos med = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
                 .append("id_med,")
-                .append("nombre,")               
+                .append("nombre,")
                 .append("fecha_elab,")
                 .append("fecha_ven,")
-                .append("precio,")  
-                .append("stock,") 
+                .append("precio,")
+                .append("stock,")
                 .append("presen,")
                 .append("labo,")
                 .append("descrip ")
                 .append("FROM medicamentos WHERE nombre=?");
         try (Connection cn = conectaDb.conexionDB()) {
-            PreparedStatement ps = cn.prepareStatement(sql.toString());     
-            ps.setString(1, query); 
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            ps.setString(1, query);
             try (ResultSet rs = ps.executeQuery()) {
                 med = new Medicamentos();
                 while (rs.next()) {
@@ -97,7 +96,7 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
                     med.setLab(rs.getString(8));
                     med.setDescrip(rs.getString(9));
                 }
-            }catch(SQLException e){
+            } catch (SQLException e) {
                 mensaje = e.getMessage();
             }
         } catch (SQLException e) {
@@ -145,8 +144,8 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
             mensaje = e.getMessage();
             System.out.println(mensaje);
         }
-        return ok;       
-      
+        return ok;
+
     }
 
     @Override
@@ -171,28 +170,28 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
                 }
 
             } catch (Exception e) {
-                mensaje = e.getMessage();                
+                mensaje = e.getMessage();
             }
 
         } catch (SQLException e) {
             mensaje = e.getMessage();
-            
+
         }
         return med;
-        
+
     }
-    
+
     @Override
     public void delete(int id) {
         String sql = "DELETE FROM medicamentos WHERE id_med= ?";
         try (Connection cn = conectaDb.conexionDB()) {
             PreparedStatement ps = cn.prepareStatement(sql);
-            ps.setString(1, String.valueOf(id));                    
+            ps.setString(1, String.valueOf(id));
             int dml = ps.executeUpdate();
             if (dml == 1) {
-                mensaje="Medicamento ELIMINADO";
+                mensaje = "Medicamento ELIMINADO";
             } else {
-                mensaje="ERROR AL ELIMINAR";
+                mensaje = "ERROR AL ELIMINAR";
             }
 
         } catch (SQLException e) {
@@ -203,7 +202,7 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
     @Override
     public void update(Medicamentos t) {
         StringBuilder sql = new StringBuilder();
-        sql.append("UPDATE medicamentos SET ")              
+        sql.append("UPDATE medicamentos SET ")
                 .append("nombre=?,")
                 .append("fecha_elab=?,")
                 .append("fecha_ven=?,")
@@ -226,9 +225,9 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
             ps.setString(9, t.getID_Med());
             int dml = ps.executeUpdate();
             if (dml == 1) {
-                mensaje="ACTUALIZADO CORRECTAMENTE";
+                mensaje = "ACTUALIZADO CORRECTAMENTE";
             } else {
-                mensaje="ERROR AL ACTUALIZAR";
+                mensaje = "ERROR AL ACTUALIZAR";
             }
 
         } catch (SQLException e) {
@@ -245,7 +244,7 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
             ps.setString(1, String.valueOf(d1));
             ps.setString(2, String.valueOf(d2));
             try (ResultSet rs = ps.executeQuery()) {
-                lista = new ArrayList();                
+                lista = new ArrayList();
                 if (rs.next()) {
                     Medicamentos med = new Medicamentos();
                     med.setID_Med(rs.getString("id_med"));
@@ -261,18 +260,17 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
                 }
 
             } catch (Exception e) {
-                mensaje = e.getMessage();                
+                mensaje = e.getMessage();
             }
 
         } catch (SQLException e) {
             mensaje = e.getMessage();
-            
+
         }
-        return lista; 
-       
+        return lista;
+
     }
-    
-    
+
     @Override
     public String getMessage() {
         return mensaje;

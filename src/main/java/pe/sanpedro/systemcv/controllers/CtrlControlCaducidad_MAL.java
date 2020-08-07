@@ -28,8 +28,8 @@ public class CtrlControlCaducidad_MAL {
     }
 
     public void initController() {
+
         pnlControl = new PnlControlCaducidad_MAL();
-        mostrarTodo();
         pnlControl.getBtn_mostrarTodo().addActionListener(e -> mostrarTodo());
         pnlControl.getBtn_filtrar().addActionListener(e -> filtrar());
         pnlControl.getBtn_generarFichero().addActionListener(e -> generarFichero());
@@ -43,7 +43,9 @@ public class CtrlControlCaducidad_MAL {
     private void mostrarTodo() {
         daoControl = new DaoMedicamentosImpl();
         lista = daoControl.sel();
-        refrescarTabla(lista);         
+        refrescarTabla(lista);
+        pnlControl.getBtn_generarFichero().setEnabled(false);
+        pnlControl.getDate().setEnabled(true);
     }
 
     private void refrescarTabla(List<Medicamentos> lista) {

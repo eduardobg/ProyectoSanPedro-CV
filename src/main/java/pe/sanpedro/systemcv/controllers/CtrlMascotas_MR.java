@@ -69,17 +69,21 @@ class CtrlMascotas_MR {
     public void mostrarMascotas(Integer id_cliente) {
         DefaultTableModel modelo = new DefaultTableModel();
         modelo.addColumn("Nombre");
+        modelo.addColumn("Id Especie");
         modelo.addColumn("Especie");
+        modelo.addColumn("Id Raza");
         modelo.addColumn("Raza");
         modelo.addColumn("Edad");
         int i = 0;
         List<Mascota> list = daomascotas.searchById2(id_cliente);
         for (Mascota c : list) {
-            Object[] fila = new Object[4];
+            Object[] fila = new Object[6];
             fila[0] = c.getNom_mascota();
-            fila[1] = c.getNom_especie();
-            fila[2] = c.getNom_raza();
-            fila[3] = c.getEdad();
+            fila[1] = c.getId_especie();
+            fila[2] = c.getNom_especie();
+            fila[3] = c.getId_raza();
+            fila[4] = c.getNom_raza();
+            fila[5] = c.getEdad();
             modelo.addRow(fila);
             i++;
         }
@@ -127,6 +131,7 @@ class CtrlMascotas_MR {
         int id = Integer.parseInt(pnlMascotas.getJLabelId_cliente().getText());
         pnlMascotas.es = (Especie) pnlMascotas.getJComboBoxEspecie().getSelectedItem();
         pnlMascotas.r = (Raza) pnlMascotas.getJComboBoxRaza().getSelectedItem();
+
         if (pnlMascotas.es.getId_especie() != 3) {
             daomascotas.insert(new Mascota(nombre, pnlMascotas.es.getId_especie(), pnlMascotas.r.getId_raza(), edad, id));
             JOptionPane.showMessageDialog(null, "Se ha registrado a " + nombre);
@@ -208,6 +213,7 @@ class CtrlMascotas_MR {
 
     public void modificarE() {
         int fila = -1;
+        int x = 0;
         fila = pnlMascotas.getJTableMascotas().getSelectedRow();
         if (fila != -1) {
 
@@ -216,10 +222,14 @@ class CtrlMascotas_MR {
             pnlMascotas.getJtxtNombre().setText(pnlMascotas.mascota.getNom_mascota());
             pnlMascotas.getJComboBoxEspecie().setSelectedIndex(pnlMascotas.mascota.getId_especie());
             if (pnlMascotas.mascota.getId_especie() == 1) {
-                pnlMascotas.getJComboBoxRaza().setSelectedIndex(pnlMascotas.mascota.getId_raza());
-            } else {
-                pnlMascotas.getJComboBoxRaza().setSelectedIndex(pnlMascotas.mascota.getId_raza()-5);
+                x = pnlMascotas.mascota.getId_raza() - 5;
+            } else if (pnlMascotas.mascota.getId_especie() == 2) {
+                x = pnlMascotas.mascota.getId_raza();
             }
+
+            pnlMascotas.getJComboBoxRaza().setSelectedIndex(x);
+
+           
             pnlMascotas.getJtxtEdad().setText(pnlMascotas.mascota.getEdad() + "");
 
         } else {
