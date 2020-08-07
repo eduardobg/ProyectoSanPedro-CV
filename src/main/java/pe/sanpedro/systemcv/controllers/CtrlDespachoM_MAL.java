@@ -64,6 +64,7 @@ public class CtrlDespachoM_MAL {
     private void despachar() {
 
         if (pnlDespacho.getJTablePedido().getModel().getValueAt(pnlDespacho.getJTablePedido().getSelectedRow(), 3).equals("En despacho")) {
+            System.out.println("" + pnlDespacho.getJTableDetallePedido().getModel().getRowCount());
 
             for (int i = 0; i < pnlDespacho.getJTableDetallePedido().getModel().getRowCount(); i++) {
                 daoDespacho = new DaoMedicamentosImpl();
@@ -74,17 +75,17 @@ public class CtrlDespachoM_MAL {
                 int sa = dp.getStock() - cantidad;
                 if (dp.getStock() >= cantidad) {
                     daoDespacho.update2(id_med, sa);
-                    
-                    daoDespacho = new DaoOrdenPedidoImpl();
-                    int num = Integer.parseInt(String.valueOf(pnlDespacho.getJTablePedido().getModel().getValueAt(pnlDespacho.getJTablePedido().getSelectedRow(), 0)));
-                    daoDespacho.update2(num, 4);
-                    JOptionPane.showMessageDialog(null, "La orden acaba de ser procesada.");
-                    initController();
+
                 } else {
                     JOptionPane.showMessageDialog(null, "no hay suficiente stock del producto: " + dp.getNombre() + ", el stock es de: " + dp.getStock());
                 }
 
-            } 
+            }
+            daoDespacho = new DaoOrdenPedidoImpl();
+            int num = Integer.parseInt(String.valueOf(pnlDespacho.getJTablePedido().getModel().getValueAt(pnlDespacho.getJTablePedido().getSelectedRow(), 0)));
+            daoDespacho.update2(num, 4);
+            JOptionPane.showMessageDialog(null, "La orden acaba de ser procesada.");
+            initController();
 
         } else {
             JOptionPane.showMessageDialog(null, "La orden seleccionada no pertenece a esta área.");

@@ -35,7 +35,6 @@ public class CtrlTrabajadores_MA {
         pnlTrabajadores.getBtn_agregar().addActionListener(e-> agregarEmpleado());
         pnlTrabajadores.getBtn_cancelar().addActionListener(e -> cancelar());
         pnlTrabajadores.getBtn_eliminar().addActionListener(e -> eliminarEmpleado());
-        //pnlTrabajadores.getJTable().getModel().addTableModelListener(e -> editarEmpleado());//Para Completar los campos dando Click en row
         pnlTrabajadores.getBtnEditar().addActionListener(e -> editarEmpleado());
                 
         CardLayout vista = (CardLayout) FrmMainAdmin.Pnl_VP.getLayout();
@@ -50,18 +49,9 @@ public class CtrlTrabajadores_MA {
         refrescarTabla(lista);       
     }
     private void refrescarTabla(List<Trabajadores> lista){
-        DefaultTableModel modelo = new DefaultTableModel();
-        modelo.addColumn("id");
-        modelo.addColumn("DNI");
-        modelo.addColumn("Nombre");
-        modelo.addColumn("Ape.Paterno");
-        modelo.addColumn("Ape.Materno");
-        modelo.addColumn("Celular");
-        modelo.addColumn("correo");
-        modelo.addColumn("F.Nacimineto");
-        modelo.addColumn("F.Registro");
-        modelo.addColumn("Cargo");
-        if (lista != null) {
+        ((DefaultTableModel) pnlTrabajadores.getJTable().getModel()).setNumRows(0);
+        DefaultTableModel modelo = (DefaultTableModel) pnlTrabajadores.getJTable().getModel();
+        if (lista!=null) {
             lista.forEach((t) -> {
                 Object[] fila = new Object[10];
                 fila[0] = t.getId();
@@ -72,8 +62,7 @@ public class CtrlTrabajadores_MA {
                 fila[5] = t.getCelular();
                 fila[6] = t.getCorreo();
                 fila[7] = t.getFecha_nac();
-                fila[8] = t.getFecha_reg();
-                //fila[9] = t.getTipo();
+                fila[8] = t.getFecha_reg();            
                 fila[9] = t.getCargo();//new
                 modelo.addRow(fila);
             });
@@ -90,9 +79,11 @@ public class CtrlTrabajadores_MA {
             if (pnlTrabajadores.getRbtn_1().isSelected()) {
                 String dni = pnlTrabajadores.getTxt_buscardni().getText();
                 Trabajadores employee = (Trabajadores) daotrabajadores.searchByQuery2(dni);
-                if (employee!=null) {
+                if (employee.getDni()!=null) {                  
                    lista.add(employee);
                    refrescarTabla(lista);
+                }else{
+                    JOptionPane.showMessageDialog(null, "Trabajador no encontrado", "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
                 }
             }else{                
                 if (pnlTrabajadores.getCbx_areas1().getSelectedIndex()!=0) {

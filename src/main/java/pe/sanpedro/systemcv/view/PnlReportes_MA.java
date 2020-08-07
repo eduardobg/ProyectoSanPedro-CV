@@ -6,17 +6,20 @@
 package pe.sanpedro.systemcv.view;
 
 import com.github.lgooddatepicker.components.DatePicker;
+import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JTable;
+import pe.sanpedro.systemcv.dto.Reporte;
 
 /**
  *
  * @author Mysk
  */
 public class PnlReportes_MA extends javax.swing.JPanel {
-
+public List<Reporte> lista=null;
     /**
+     *
      * Creates new form PnlReportes_MA
      */
     public PnlReportes_MA() {

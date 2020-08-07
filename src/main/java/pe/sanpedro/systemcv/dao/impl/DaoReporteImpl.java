@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 import pe.sanpedro.systemcv.dao.GenericDao;
 import pe.sanpedro.systemcv.dto.Reporte;
-import pe.sanpedro.systemcv.model.Trabajadores;
 import pe.sanpedro.systemcv.util.ConectaBD;
 
 /**

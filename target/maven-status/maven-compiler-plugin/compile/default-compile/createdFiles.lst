@@ -70,6 +70,7 @@ pe\sanpedro\systemcv\dao\impl\DaoRazaImpl.class
 pe\sanpedro\systemcv\view\FrmLoginT.class
 pe\sanpedro\systemcv\dao\GenericDao.class
 pe\sanpedro\systemcv\view\PnlReportes_MA.class
+pe\sanpedro\systemcv\util\GrabarFichero.class
 pe\sanpedro\systemcv\view\PnlConsultaGeneral_MC$2.class
 pe\sanpedro\systemcv\controllers\CtrlControlCaducidad_MAL.class
 pe\sanpedro\systemcv\view\PnlDespachoPro_MAL$1.class

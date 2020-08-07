@@ -2,6 +2,7 @@
 package pe.sanpedro.systemcv.view;
 
 import com.github.lgooddatepicker.components.DatePicker;
+import java.time.LocalDate;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -117,6 +118,8 @@ public class PnlTrabajadores_MA extends javax.swing.JPanel {
         txt_nom.setText("");
         txt_apep.setText("");
         txt_apem.setText("");
+        dp_fnac.setDateToToday();
+        cbx_areas2.setSelectedIndex(0);
         txt_cel.setText("");
         txt_correo.setText("");        
     }
@@ -176,7 +179,7 @@ public class PnlTrabajadores_MA extends javax.swing.JPanel {
 
             },
             new String [] {
-
+                "ID", "Dni", "Nombre", "Ape.Paterno", "Ape.Materno", "Celular", "Correo", "F.Nacimiento", "F.Registro", "Cargo"
             }
         ));
         jScrollPane1.setViewportView(jtbl);
