@@ -229,7 +229,7 @@ class CtrlMascotas_MR {
 
             pnlMascotas.getJComboBoxRaza().setSelectedIndex(x);
 
-            System.out.println(pnlMascotas.mascota.getId_raza());
+           
             pnlMascotas.getJtxtEdad().setText(pnlMascotas.mascota.getEdad() + "");
 
         } else {

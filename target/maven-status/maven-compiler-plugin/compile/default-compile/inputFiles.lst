@@ -18,6 +18,7 @@ C:\tmp\dev\SanPedroCV\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\vie
 C:\tmp\dev\SanPedroCV\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlPagoOrden_MC.java
 C:\tmp\dev\SanPedroCV\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\FrmMainAdmin.java
 C:\tmp\dev\SanPedroCV\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\JdlgLoginA.java
+C:\tmp\dev\SanPedroCV\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\util\GrabarFichero.java
 C:\tmp\dev\SanPedroCV\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlReportes_MA.java
 C:\tmp\dev\SanPedroCV\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlExamenes_MC.java
 C:\tmp\dev\SanPedroCV\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoReporteImpl.java

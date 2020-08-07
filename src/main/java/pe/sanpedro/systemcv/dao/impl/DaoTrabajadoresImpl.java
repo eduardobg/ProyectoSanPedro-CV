@@ -219,8 +219,7 @@ public class DaoTrabajadoresImpl implements GenericDao<Trabajadores> {
                     employee.setCelular(rs.getString("celular"));
                     employee.setCorreo(rs.getString("correo"));
                     employee.setFecha_nac(LocalDate.parse(rs.getString("fecha_nac")));
-                    employee.setFecha_reg(LocalDate.parse(rs.getString("fecha_reg")));
-                    //employee.setTipo(rs.getInt("tipo"));
+                    employee.setFecha_reg(LocalDate.parse(rs.getString("fecha_reg")));                
                     employee.setCargo(rs.getString("categoria"));
                 }
 
