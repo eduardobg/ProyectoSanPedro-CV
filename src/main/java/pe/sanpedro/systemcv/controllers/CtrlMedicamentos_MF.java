@@ -56,7 +56,7 @@ public class CtrlMedicamentos_MF {
         List<Medicamentos> lista = daomedicamentos.sel();
         if (lista != null) {
             lista.forEach((m) -> {
-                Object[] fila = new Object[9];
+                Object[] fila = new Object[8];
                 fila[0] = m.getID_Med();
                 fila[1] = m.getNombre();
                 fila[2] = m.getF_elab();
@@ -65,7 +65,6 @@ public class CtrlMedicamentos_MF {
                 fila[5] = m.getStock();
                 fila[6] = m.getPresent();
                 fila[7] = m.getLab();
-                fila[8] = m.getDescrip();
                 modelo.addRow(fila);
             });
             pnlMedicamentos.getJTable().setModel(modelo);
@@ -75,11 +74,59 @@ public class CtrlMedicamentos_MF {
 
     }
 
-    private void refrescarMedicamentos(List<Medicamentos> listaMedicamentos) {
+    private void verDescripcion() {
+        if (pnlMedicamentos.getJTable().getSelectedRow() != -1) {
+            Object ob1 = pnlMedicamentos.getJTable().getModel().getValueAt(pnlMedicamentos.getJTable().getSelectedRow(), 1);
+            daomedicamentos = new DaoMedicamentosImpl();
+            String d = String.valueOf(ob1);
+            Medicamentos medicamentos = (Medicamentos) daomedicamentos.searchByQuery2(d);
+            if (medicamentos != null) {
+                pnlMedicamentos.getTxt_Descripcion().setText(medicamentos.getDescrip());
+            } else {
+                JOptionPane.showMessageDialog(null, daomedicamentos.getMessage(), "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un medicamento", "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+        }
+
+    }
+    
+    private void buscarMedicamentos() {
+        if (!pnlMedicamentos.getTxt_medicamento().getText().equalsIgnoreCase("")) {
+            daomedicamentos = new DaoMedicamentosImpl();
+            String query = pnlMedicamentos.getTxt_medicamento().getText();
+            if (!"".equals(query)) {
+                Medicamentos med = (Medicamentos) daomedicamentos.searchByQuery2(query);
+                if (med != null) {
+                    mostrarListaMedicamento(query);
+                } else {
+                    JOptionPane.showMessageDialog(null, daomedicamentos.getMessage(), "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de un medicamento por favor");
+
+        }
+
+    }
+
+    private void mostrarListaMedicamento(String query) {
+        daomedicamentos = new DaoMedicamentosImpl();
+        List<Medicamentos> lista = daomedicamentos.searchByQuery(query);
+        if (0 == lista.size()) {
+            JOptionPane.showMessageDialog(null, "Medicamento no encontrado", "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+            initController();
+        } else {
+            refrescarListaMedicamentos(lista);
+        }
+
+    }
+
+    private void refrescarListaMedicamentos(List<Medicamentos> lista) {
         ((DefaultTableModel) pnlMedicamentos.getJTable().getModel()).setNumRows(0);
         DefaultTableModel model = (DefaultTableModel) pnlMedicamentos.getJTable().getModel();
-        if (listaMedicamentos != null) {
-            listaMedicamentos.forEach((n) -> {
+        if (lista != null) {
+            lista.forEach((n) -> {
                 Object[] fila = new Object[8];
                 fila[0] = n.getID_Med();
                 fila[1] = n.getNombre();
@@ -95,28 +142,5 @@ public class CtrlMedicamentos_MF {
         } else {
             JOptionPane.showMessageDialog(null, daomedicamentos.getMessage(), "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
         }
-    }
-
-    private void buscarMedicamentos() {
-        daomedicamentos = new DaoMedicamentosImpl();
-        String query = pnlMedicamentos.getTxt_medicamento().getText();
-        Medicamentos medicamentos = (Medicamentos) daomedicamentos.searchByQuery2(query);
-        if (medicamentos != null) {
-            List<Medicamentos> listaMedicamentos = new ArrayList();
-            listaMedicamentos.add(medicamentos);
-            refrescarMedicamentos(listaMedicamentos);
-        }
-    }
-
-    private void verDescripcion() {
-        Object ob1 = pnlMedicamentos.getJTable().getModel().getValueAt(pnlMedicamentos.getJTable().getSelectedRow(), 1);
-        daomedicamentos = new DaoMedicamentosImpl();
-        String d = String.valueOf(ob1);
-        Medicamentos medicamentos = (Medicamentos) daomedicamentos.searchByQuery2(d);
-        if (medicamentos != null) {
-                pnlMedicamentos.getTxt_Descripcion().setText(medicamentos.getDescrip());
-            } else {
-                JOptionPane.showMessageDialog(null, daomedicamentos.getMessage(), "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
-            }
     }
 }

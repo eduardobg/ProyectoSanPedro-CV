@@ -70,6 +70,25 @@ public class DaoDetallePedidoImpl implements GenericDao<DetallePedido> {
         return ok;
 
     }
+    
+    @Override
+    public void update2(int id, int estado) {
+         String sql = "UPDATE detalle_pedido SET id_estado = ? WHERE id_pedido = ? ";
+         try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, estado);
+            ps.setInt(2, id);          
+            int dml = ps.executeUpdate();
+            if (dml == 1) {
+                mensaje="Estado Actualizado";
+            } else {
+                mensaje="ERROR AL ACTUALIZAR";
+            }
+
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
+    }
 
     @Override
     public List<DetallePedido> sel() {
@@ -105,6 +124,40 @@ public class DaoDetallePedidoImpl implements GenericDao<DetallePedido> {
         }
         return lista;
     }
+//    
+//    @Override
+//    public List<DetallePedido> sel1() {
+//        List<DetallePedido> lista = null;
+//        StringBuilder sql = new StringBuilder();
+//        sql.append("SELECT ")
+//                .append("detalle_pedido.id_orden,")
+//                .append("detalle_pedido.id_med,")
+//                .append("detalle_pedido.descrip,")
+//                .append("medicamentos.precio,")
+//                .append("medicamentos.presen ")
+//                .append("FROM detalle_pedido INNER JOIN medicamentos ON detalle_pedido.id_med = medicamentos.id_med");
+//        try (Connection cn = conectaDb.conexionDB()) {
+//            PreparedStatement ps = cn.prepareStatement(sql.toString());
+//            try (ResultSet rs = ps.executeQuery()) {
+//                lista = new ArrayList();
+//                while (rs.next()) {
+//                    DetallePedido m = new DetallePedido();
+//                    m.setId_orden(rs.getInt(1));
+//                    m.setId_pro(rs.getInt(2));
+//                    m.setDescripcion(rs.getString(3));
+//                    m.setPrecio(rs.getDouble(4));
+//                    m.setPresentacion(rs.getString(5));
+//                    lista.add(m);
+//                }
+//            } catch (SQLException e) {
+//                mensaje = e.getMessage();
+//            }
+//        } catch (SQLException e) {
+//            mensaje = e.getMessage();
+//        }
+//        return lista;
+//    }
+    
     @Override
     public DetallePedido searchById(int id) {
         DetallePedido med = new DetallePedido();
@@ -168,7 +221,66 @@ public class DaoDetallePedidoImpl implements GenericDao<DetallePedido> {
         return lista;       
     }
     
+    @Override
+    public DetallePedido searchById3(int id) {
+        DetallePedido m = new DetallePedido();
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT ")
+                .append("detalle_pedido.id_orden,")
+                .append("detalle_pedido.id_med,")
+                .append("detalle_pedido.descrip,")
+                .append("detalle_pedido.cantidad,")
+                .append("medicamentos.presen ")
+                .append("FROM ((detalle_pedido ")
+                .append("INNER JOIN orden_pedido ON detalle_pedido.id_orden = orden_pedido.id_pedido) ")
+                .append("INNER JOIN medicamentos ON detalle_pedido.id_med = medicamentos.id_med) ")
+                .append("WHERE detalle_pedido.id_orden = ?");
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    m.setId_orden(rs.getInt(1));
+                    m.setId_pro(rs.getInt(2));
+                    m.setDescripcion(rs.getString(3));
+                    m.setCantidad(rs.getInt(4));
+                    m.setPresentacion(rs.getString(5));
+                }
+            } catch (SQLException e) {
+                mensaje = e.getMessage();
+            }
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
+        return m;
+    }
     
+    @Override
+    public List<DetallePedido> searchById4(int id) {
+        List<DetallePedido> list = null;
+        String sql = "SELECT detalle_pedido.id_orden,detalle_pedido.id_med,detalle_pedido.descrip,detalle_pedido.cantidad,medicamentos.presen FROM ((detalle_pedido INNER JOIN orden_pedido ON detalle_pedido.id_orden = orden_pedido.id_pedido) INNER JOIN medicamentos ON detalle_pedido.id_med = medicamentos.id_med) WHERE detalle_pedido.id_orden= ? ";
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                list= new ArrayList();
+                while (rs.next()) {
+                    DetallePedido dp = new DetallePedido();
+                    dp.setId_orden(rs.getInt(1));
+                    dp.setId_pro(rs.getInt(2));
+                    dp.setDescripcion(rs.getString(3));
+                    dp.setCantidad(rs.getInt(4));
+                    dp.setPresentacion(rs.getString(5));
+                    list.add(dp);
+                }
+            } catch (SQLException e) {
+                mensaje = e.getMessage();
+            }
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
+        return list;
+    }
 
     @Override
     public String getMessage() {

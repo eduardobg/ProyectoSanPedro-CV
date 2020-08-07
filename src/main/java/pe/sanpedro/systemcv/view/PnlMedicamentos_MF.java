@@ -21,7 +21,7 @@ public class PnlMedicamentos_MF extends javax.swing.JPanel {
     public PnlMedicamentos_MF() {
         initComponents();
     }
-public JTable getJTable(){
+    public JTable getJTable() {
         return tablaMedi;
     }
 
