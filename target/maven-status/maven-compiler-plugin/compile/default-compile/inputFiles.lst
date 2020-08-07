@@ -4,7 +4,9 @@ C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemc
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\model\OrdenPedido.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlMF.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoServiciosImpl.java
+C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlControlCaducidad_MAL.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlInicio_MA.java
+C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlInicio_MAL.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlInicio_MF.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\FrmMainAdmin.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlMA.java
@@ -18,11 +20,13 @@ C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemc
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\model\Cliente.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoDetallePedidoImpl.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlInfo_MA.java
+C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlMAL.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlMedicamentos_MF.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlTrabajadores_MA.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\model\Mascota.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoHorariosImpl.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\model\Servicios.java
+C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlInicio_MAL.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlReporte_MA.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlInicio_MA.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlEstetica_MC.java
@@ -31,7 +35,6 @@ C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemc
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoBoletaImpl.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\model\Medicamentos.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlExamenes_MC.java
-C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\model\Boleta.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\FrmMainCaja.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoTrabajadoresImpl.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoOrdenPedidoImpl.java
@@ -44,8 +47,11 @@ C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemc
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlPagoOrden_MC.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlTrabajadores_MA.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\dao\GenericDao.java
+C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlMantenimientoM_MAL.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlDespacharPedidos_MF.java
+C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\FrmMainAlmacen.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlOrdenVenta_MF.java
+C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlDespachoM_MAL.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlInicio_MC.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlClientes_MR.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\model\Trabajadores.java
@@ -58,9 +64,9 @@ C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemc
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlMascotas_MR.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlMascotas_MR.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlInfoEmpresa_MA.java
-C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\model\Servicios_1.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\run\test.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\model\Horarios.java
+C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlMantenimientoPro_MAL.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\model\Admin.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\dao\impl\DaoMascotaImpl.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\JdlgLoginA.java
@@ -77,5 +83,7 @@ C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemc
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlExamenes_MC.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlReportes_MA.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\FrmLoginT.java
+C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlDespachoPro_MAL.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlConsultaGeneral_MC.java
+C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlControlCaducidad_MAL.java
 C:\Users\alons\Desktop\car\ProyectoSanPedro-CV\src\main\java\pe\sanpedro\systemcv\view\PnlInicio_MC.java

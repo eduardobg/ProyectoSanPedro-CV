@@ -14,7 +14,7 @@ public class DetallePedido {
     private String descripcion;
     private double precio;
     private double subtotal;
-
+    private String presentacion;
     public DetallePedido() {
     }
 
@@ -26,6 +26,7 @@ public class DetallePedido {
         this.precio = precio;
         this.subtotal = subtotal;
     }
+    
 
     public Integer getId_orden() {
         return id_orden;
@@ -73,6 +74,14 @@ public class DetallePedido {
 
     public void setSubtotal(double subtotal) {
         this.subtotal = subtotal;
+    }
+
+    public String getPresentacion() {
+        return presentacion;
+    }
+
+    public void setPresentacion(String presentacion) {
+        this.presentacion = presentacion;
     }
 
 }

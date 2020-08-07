@@ -292,7 +292,7 @@ public class CtrlExamenes_MC {
     }
 
     private void cambiarCliente() {
-
+       initController();
     }
 
 }

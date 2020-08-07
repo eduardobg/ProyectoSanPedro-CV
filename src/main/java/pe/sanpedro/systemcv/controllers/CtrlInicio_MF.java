@@ -6,12 +6,11 @@
 package pe.sanpedro.systemcv.controllers;
 
 import java.awt.CardLayout;
-import java.util.List;
-import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 import pe.sanpedro.systemcv.dao.GenericDao;
 import pe.sanpedro.systemcv.dao.impl.DaoTrabajadoresImpl;
 import pe.sanpedro.systemcv.model.Trabajadores;
+import pe.sanpedro.systemcv.view.FrmLoginT;
 import pe.sanpedro.systemcv.view.FrmMainFarmacia;
 import pe.sanpedro.systemcv.view.PnlInicio_MF;
 
@@ -48,7 +47,11 @@ public class CtrlInicio_MF {
     }
     
     private void cerrarSesion(){
-        System.exit(0);
+       CtrlMF.frmMF.dispose();
+       GenericDao daotrab = new DaoTrabajadoresImpl();
+       FrmLoginT  frmlogin = new FrmLoginT();
+       CtrlLogin ctrl = new CtrlLogin( daotrab, frmlogin);
+       ctrl.initControllerT();
     }    
     
 }

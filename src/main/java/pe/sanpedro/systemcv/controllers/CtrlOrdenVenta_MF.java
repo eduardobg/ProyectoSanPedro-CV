@@ -47,6 +47,7 @@ public class CtrlOrdenVenta_MF {
         pnlOrdenVenta.getBtnLimpiar().addActionListener(e -> limpiar());
         pnlOrdenVenta.getBtnCrearOrden().addActionListener(e -> generarOrdenVenta());
         pnlOrdenVenta.getBtnQuitarDetalle().addActionListener(e -> quitarMedicamentosVenta());
+        pnlOrdenVenta.getBtn_mostrarTodo().addActionListener(e -> mostrarTodo());
 
         CardLayout vista = (CardLayout) FrmMainFarmacia.Pnl_VP.getLayout();
         FrmMainFarmacia.Pnl_VP.add(pnlOrdenVenta, "Orden de Venta");
@@ -54,29 +55,36 @@ public class CtrlOrdenVenta_MF {
         CtrlMF.frmMF.repaint();
     }
 
-    private void agregarMedicamento() {
-        int cant = Integer.parseInt(String.valueOf(pnlOrdenVenta.getTxtCantidad().getText()));
-        Object oj = pnlOrdenVenta.getJTableMed().getModel().getValueAt(pnlOrdenVenta.getJTableMed().getSelectedRow(), 0);
-        Object ob2 = pnlOrdenVenta.getJTableMed().getModel().getValueAt(pnlOrdenVenta.getJTableMed().getSelectedRow(), 1);
-        Object ob3 = pnlOrdenVenta.getJTableMed().getModel().getValueAt(pnlOrdenVenta.getJTableMed().getSelectedRow(), 2);
-        DefaultTableModel model = (DefaultTableModel) pnlOrdenVenta.getJTableDetalle().getModel();
-        double importe = Double.parseDouble(String.valueOf(ob3)) * cant;
-        Object[] fila = new Object[5];
-        fila[0] = oj;
-        fila[1] = pnlOrdenVenta.getTxtCantidad().getText();
-        fila[2] = ob2;
-        fila[3] = ob3;
-        fila[4] = importe;
-        model.addRow(fila);
-        pnlOrdenVenta.getJTableDetalle().setModel(model);
-        double subtotal = Double.parseDouble(String.valueOf(ob3)) * cant;
-        double totalS = 0;
-        if (!"".equals(pnlOrdenVenta.getTxtTotal().getText())) {
-            totalS = Double.parseDouble(pnlOrdenVenta.getTxtTotal().getText());
-        }
-        totalS = totalS + subtotal;
-        pnlOrdenVenta.getTxtTotal().setText(String.valueOf(totalS));
+    private void mostrarTodo() {
+        mostrarmedicamentos();
+    }
 
+    private void agregarMedicamento() {
+        if (!pnlOrdenVenta.getTxtCantidad().getText().equalsIgnoreCase("") && pnlOrdenVenta.getJTableMed().getSelectedRow() != -1) {
+            int cant = Integer.parseInt(String.valueOf(pnlOrdenVenta.getTxtCantidad().getText()));
+            Object oj = pnlOrdenVenta.getJTableMed().getModel().getValueAt(pnlOrdenVenta.getJTableMed().getSelectedRow(), 0);
+            Object ob2 = pnlOrdenVenta.getJTableMed().getModel().getValueAt(pnlOrdenVenta.getJTableMed().getSelectedRow(), 1);
+            Object ob3 = pnlOrdenVenta.getJTableMed().getModel().getValueAt(pnlOrdenVenta.getJTableMed().getSelectedRow(), 2);
+            DefaultTableModel model = (DefaultTableModel) pnlOrdenVenta.getJTableDetalle().getModel();
+            double importe = Double.parseDouble(String.valueOf(ob3)) * cant;
+            Object[] fila = new Object[5];
+            fila[0] = oj;
+            fila[1] = pnlOrdenVenta.getTxtCantidad().getText();
+            fila[2] = ob2;
+            fila[3] = ob3;
+            fila[4] = importe;
+            model.addRow(fila);
+            pnlOrdenVenta.getJTableDetalle().setModel(model);
+            double subtotal = Double.parseDouble(String.valueOf(ob3)) * cant;
+            double totalS = 0;
+            if (!"".equals(pnlOrdenVenta.getTxtTotal().getText())) {
+                totalS = Double.parseDouble(pnlOrdenVenta.getTxtTotal().getText());
+            }
+            totalS = totalS + subtotal;
+            pnlOrdenVenta.getTxtTotal().setText(String.valueOf(totalS));
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe ingresar una cantidad y seleccionar un medicamento", "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+        }
     }
 
     private void buscarCliente() {
@@ -96,17 +104,50 @@ public class CtrlOrdenVenta_MF {
         }
     }
 
-    private void refrescarMedicamentos(List<Medicamentos> listaMedicamentos) {
+    private void buscarMedicamentos() {
+        if (!pnlOrdenVenta.getTxtMedicamento().getText().equalsIgnoreCase("")) {
+            daoOrdenVenta = new DaoMedicamentosImpl();
+            String query = pnlOrdenVenta.getTxtMedicamento().getText();
+            if (!"".equals(query)) {
+                Medicamentos med = (Medicamentos) daoOrdenVenta.searchByQuery2(query);
+                if (med != null) {
+                    mostrarListaMedicamento(query);
+                } else {
+                    JOptionPane.showMessageDialog(null, daoOrdenVenta.getMessage(), "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese el nombre de un medicamento por favor");
+
+        }
+
+    }
+
+    private void mostrarListaMedicamento(String query) {
+        daoOrdenVenta = new DaoMedicamentosImpl();
+        List<Medicamentos> lista = daoOrdenVenta.searchByQuery(query);
+        if (0 == lista.size()) {
+            JOptionPane.showMessageDialog(null, "Medicamento no encontrado", "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+        } else {
+            refrescarListaMedicamentos(lista);
+        }
+
+    }
+
+    private void refrescarListaMedicamentos(List<Medicamentos> lista) {
         ((DefaultTableModel) pnlOrdenVenta.getJTableMed().getModel()).setNumRows(0);
         DefaultTableModel model = (DefaultTableModel) pnlOrdenVenta.getJTableMed().getModel();
-        if (listaMedicamentos != null) {
-            listaMedicamentos.forEach((n) -> {
-                Object[] fila = new Object[5];
+        if (lista != null) {
+            lista.forEach((n) -> {
+                Object[] fila = new Object[8];
                 fila[0] = n.getID_Med();
                 fila[1] = n.getNombre();
-                fila[2] = n.getPrecio();
-                fila[3] = n.getStock();
-                fila[4] = n.getPresent();
+                fila[2] = n.getF_elab();
+                fila[3] = n.getF_venci();
+                fila[4] = n.getPrecio();
+                fila[5] = n.getStock();
+                fila[6] = n.getPresent();
+                fila[7] = n.getLab();
                 model.addRow(fila);
             });
             pnlOrdenVenta.getJTableMed().setModel(model);
@@ -115,19 +156,8 @@ public class CtrlOrdenVenta_MF {
         }
     }
 
-    private void buscarMedicamentos() {
-        daoOrdenVenta = new DaoMedicamentosImpl();
-        String query = pnlOrdenVenta.getTxtMedicamento().getText();
-        Medicamentos medicamentos = (Medicamentos) daoOrdenVenta.searchByQuery2(query);
-        if (medicamentos != null) {
-            List<Medicamentos> listaMedicamentos = new ArrayList();
-            listaMedicamentos.add(medicamentos);
-            refrescarMedicamentos(listaMedicamentos);
-        }
-    }
-
     private void cancelar() {
-       initController();
+        initController();
     }
 
     private void limpiar() {
@@ -156,7 +186,8 @@ public class CtrlOrdenVenta_MF {
         daoOrdenVenta.getMessage();//Borrar        
         int id_orden = daoOrdenVenta.searchById4(4, id_cli);// el numero 3 dependende del tipo de serivio o producto 
         generarDetallePedido(id_orden);
-        JOptionPane.showMessageDialog(null, "Orden creada N°"+id_orden);
+        initController();
+        JOptionPane.showMessageDialog(null, "Orden creada N°" + id_orden);
 
     }
 
@@ -177,15 +208,19 @@ public class CtrlOrdenVenta_MF {
     }
 
     private void quitarMedicamentosVenta() {
-        DefaultTableModel model1 = (DefaultTableModel) pnlOrdenVenta.getJTableDetalle().getModel();
-        Object ob2 = pnlOrdenVenta.getJTableDetalle().getModel().getValueAt(pnlOrdenVenta.getJTableDetalle().getSelectedRow(), 4);
+        if (pnlOrdenVenta.getJTableMed().getSelectedRow() != -1) {
+            DefaultTableModel model1 = (DefaultTableModel) pnlOrdenVenta.getJTableDetalle().getModel();
+            Object ob2 = pnlOrdenVenta.getJTableDetalle().getModel().getValueAt(pnlOrdenVenta.getJTableDetalle().getSelectedRow(), 4);
 
-        model1.removeRow(pnlOrdenVenta.getJTableDetalle().getSelectedRow());
-        pnlOrdenVenta.getJTableDetalle().setModel(model1);
-        double total = Double.parseDouble(pnlOrdenVenta.getTxtTotal().getText());
-        double subtotal = Double.parseDouble(String.valueOf(ob2));
-        total = total - subtotal;
-        pnlOrdenVenta.getTxtTotal().setText(String.valueOf(total));
+            model1.removeRow(pnlOrdenVenta.getJTableDetalle().getSelectedRow());
+            pnlOrdenVenta.getJTableDetalle().setModel(model1);
+            double total = Double.parseDouble(pnlOrdenVenta.getTxtTotal().getText());
+            double subtotal = Double.parseDouble(String.valueOf(ob2));
+            total = total - subtotal;
+            pnlOrdenVenta.getTxtTotal().setText(String.valueOf(total));
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila por favor");
+        }
     }
 
     private void mostrarmedicamentos() {

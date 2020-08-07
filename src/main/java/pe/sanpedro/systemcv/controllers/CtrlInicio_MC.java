@@ -6,6 +6,7 @@ import javax.swing.SwingUtilities;
 import pe.sanpedro.systemcv.dao.GenericDao;
 import pe.sanpedro.systemcv.dao.impl.DaoTrabajadoresImpl;
 import pe.sanpedro.systemcv.model.Trabajadores;
+import pe.sanpedro.systemcv.view.FrmLoginT;
 import pe.sanpedro.systemcv.view.FrmMainCaja;
 import pe.sanpedro.systemcv.view.PnlInicio_MC;
 
@@ -42,7 +43,11 @@ public class CtrlInicio_MC {
     }
     
     private void cerrarSesion(){
-        System.exit(0);
+       CtrlMC.frmMC.dispose();
+       GenericDao daotrab = new DaoTrabajadoresImpl();
+       FrmLoginT  frmlogin = new FrmLoginT();
+       CtrlLogin ctrl = new CtrlLogin( daotrab, frmlogin);
+       ctrl.initControllerT();
     }    
     
 }

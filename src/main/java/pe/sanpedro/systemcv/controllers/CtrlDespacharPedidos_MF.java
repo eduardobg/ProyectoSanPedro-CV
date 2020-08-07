@@ -6,14 +6,11 @@
 package pe.sanpedro.systemcv.controllers;
 
 import java.awt.CardLayout;
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import pe.sanpedro.systemcv.dao.GenericDao;
-import pe.sanpedro.systemcv.dao.impl.DaoDetallePedidoImpl;
 import pe.sanpedro.systemcv.dao.impl.DaoOrdenPedidoImpl;
-import pe.sanpedro.systemcv.model.DetallePedido;
 import pe.sanpedro.systemcv.model.OrdenPedido;
 import pe.sanpedro.systemcv.view.FrmMainFarmacia;
 import pe.sanpedro.systemcv.view.PnlDespacharPedidos_MF;
@@ -49,26 +46,40 @@ public class CtrlDespacharPedidos_MF {
     }
 
     private void buscarOrden() {
-        daoDespachar = new DaoOrdenPedidoImpl();
-        int id_orden = Integer.parseInt(pnlDespacharPedidos.getTxtIDOrden().getText());
-        if (!"".equals(id_orden)) {
-            OrdenPedido dp = (OrdenPedido) daoDespachar.searchById(id_orden);
-            if (dp != null) {
-                mostrarOrden(id_orden);
-                pnlDespacharPedidos.getTxtNumOrd().setText(String.valueOf(id_orden));
-                pnlDespacharPedidos.getTxtNombre().setText(dp.getNombreCli());
-                pnlDespacharPedidos.getTxtDNI().setText(dp.getDni());
-                pnlDespacharPedidos.getTxtEstado().setText(dp.getNombEstado());
-            } else {
-                JOptionPane.showMessageDialog(null, daoDespachar.getMessage(), "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+        if (!pnlDespacharPedidos.getTxtIDOrden().getText().equalsIgnoreCase("")) {
+            daoDespachar = new DaoOrdenPedidoImpl();
+            int id_orden = Integer.parseInt(pnlDespacharPedidos.getTxtIDOrden().getText());
+            if (!"".equals(id_orden)) {
+                OrdenPedido dp = (OrdenPedido) daoDespachar.searchById(id_orden);
+                if (dp != null) {
+                    pnlDespacharPedidos.getTxtNumOrd().setText(String.valueOf(id_orden));
+                    pnlDespacharPedidos.getTxtNombre().setText(dp.getNombreCli());
+                    pnlDespacharPedidos.getTxtDNI().setText(dp.getDni());
+                    pnlDespacharPedidos.getTxtEstado().setText(dp.getNombEstado());
+                    mostrarOrden(id_orden);
+                } else {
+                    JOptionPane.showMessageDialog(null, daoDespachar.getMessage(), "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese un número de orden por favor");
+
         }
+
     }
 
     private void mostrarOrden(int id_orden) {
         daoDespachar = new DaoOrdenPedidoImpl();
         List<OrdenPedido> lista = daoDespachar.searchById2(id_orden);
-        refrescarOrdenPedido(lista);
+        if (0 == lista.size()) {
+            JOptionPane.showMessageDialog(null, "Orden no correspone a Farmacia", "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+            pnlDespacharPedidos.getTxtNumOrd().setText("");
+            pnlDespacharPedidos.getTxtNombre().setText("");
+            pnlDespacharPedidos.getTxtDNI().setText("");
+            pnlDespacharPedidos.getTxtEstado().setText("");
+        } else {
+            refrescarOrdenPedido(lista);
+        }
 
     }
 
@@ -116,17 +127,22 @@ public class CtrlDespacharPedidos_MF {
     }
 
     private void buscarOrdenDNI() {
-        daoDespachar = new DaoOrdenPedidoImpl();
-        String dni = pnlDespacharPedidos.getTxtOrdenDNI().getText();
-        if (!"".equals(dni)) {
-            OrdenPedido op = (OrdenPedido) daoDespachar.searchByQuery2(dni);
-            daoDespachar.getMessage();
-            if (op != null) {
-                mostrarOrdenPagada(dni);
+        if (!pnlDespacharPedidos.getTxtOrdenDNI().getText().equalsIgnoreCase("")) {
+            daoDespachar = new DaoOrdenPedidoImpl();
+            String dni = pnlDespacharPedidos.getTxtOrdenDNI().getText();
+            if (!"".equals(dni)) {
+                OrdenPedido op = (OrdenPedido) daoDespachar.searchByQuery2(dni);
+                daoDespachar.getMessage();
+                if (op != null) {
+                    mostrarOrdenPagada(dni);
 
-            } else {
-                JOptionPane.showMessageDialog(null, daoDespachar.getMessage(), "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+                } else {
+                    JOptionPane.showMessageDialog(null, daoDespachar.getMessage(), "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+                }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ingrese un número de DNI");
+
         }
     }
 
@@ -158,17 +174,21 @@ public class CtrlDespacharPedidos_MF {
     }
 
     private void iniciarDespacho() {
-        
-        if (pnlDespacharPedidos.getTxtEstado().getText().equals("Pagado")) {
-            daoDespachar = new DaoOrdenPedidoImpl();
-            int num = Integer.parseInt(pnlDespacharPedidos.getTxtNumOrd().getText());
-            daoDespachar.update2(num, 3);
-            JOptionPane.showMessageDialog(null, "Su orden está siendo atendido en el almacén.");
+        if (pnlDespacharPedidos.getJTableMedicamentos().getSelectedRow() != -1) {
+            if (pnlDespacharPedidos.getTxtEstado().getText().equals("Pagado")) {
+                daoDespachar = new DaoOrdenPedidoImpl();
+                int num = Integer.parseInt(pnlDespacharPedidos.getTxtNumOrd().getText());
+                daoDespachar.update2(num, 3);
+                JOptionPane.showMessageDialog(null, "Su orden está siendo atendido en el almacén.");
+                initController();
+            } else {
+                JOptionPane.showMessageDialog(null, "Primero debe pagar la orden en caja.");
+            }
         } else {
-            JOptionPane.showMessageDialog(null, "Debe cancelar su orden primero en caja.");
+            JOptionPane.showMessageDialog(null, "Debe seleccionar un pedido");
 
         }
-        
+
     }
 
     private void limpiarOrden() {
@@ -184,23 +204,27 @@ public class CtrlDespacharPedidos_MF {
     }
 
     private void revisar() {
-        daoDespachar = new DaoOrdenPedidoImpl();
-        Object ob = pnlDespacharPedidos.getJTableOrden().getModel().getValueAt(pnlDespacharPedidos.getJTableOrden().getSelectedRow(), 0);
-        int id_orden = Integer.parseInt(String.valueOf(ob));
-        if (!"".equals(id_orden)) {
-            OrdenPedido dp = (OrdenPedido) daoDespachar.searchById(id_orden);
-            if (dp != null) {
-                mostrarOrden(id_orden);
-                pnlDespacharPedidos.getTxtIDOrden().setText(String.valueOf(ob));
-                pnlDespacharPedidos.getTxtNombre().setText(dp.getNombreCli());
-                pnlDespacharPedidos.getTxtDNI().setText(dp.getDni());
-                pnlDespacharPedidos.getTxtEstado().setText(dp.getNombEstado());
-                pnlDespacharPedidos.getTxtNumOrd().setText(String.valueOf(ob));
-            } else {
-                JOptionPane.showMessageDialog(null, daoDespachar.getMessage(), "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+        if (pnlDespacharPedidos.getJTableOrden().getSelectedRow() != -1) {
+            daoDespachar = new DaoOrdenPedidoImpl();
+            Object ob = pnlDespacharPedidos.getJTableOrden().getModel().getValueAt(pnlDespacharPedidos.getJTableOrden().getSelectedRow(), 0);
+            int id_orden = Integer.parseInt(String.valueOf(ob));
+            if (!"".equals(id_orden)) {
+                OrdenPedido dp = (OrdenPedido) daoDespachar.searchById(id_orden);
+                if (dp != null) {
+                    mostrarOrden(id_orden);
+                    pnlDespacharPedidos.getTxtIDOrden().setText(String.valueOf(ob));
+                    pnlDespacharPedidos.getTxtNombre().setText(dp.getNombreCli());
+                    pnlDespacharPedidos.getTxtDNI().setText(dp.getDni());
+                    pnlDespacharPedidos.getTxtEstado().setText(dp.getNombEstado());
+                    pnlDespacharPedidos.getTxtNumOrd().setText(String.valueOf(ob));
+                } else {
+                    JOptionPane.showMessageDialog(null, daoDespachar.getMessage(), "ADMINISTRACIÓN", JOptionPane.WARNING_MESSAGE);
+                }
             }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una orden");
+
         }
-
     }
-
 }

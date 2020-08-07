@@ -1,5 +1,7 @@
 package pe.sanpedro.systemcv.model;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author Mysk
@@ -19,8 +21,7 @@ public class OrdenPedido {
     private String descrip;
     private double precio;
     private double subtotal;
-    private String presen;
-    private String labo;
+    private LocalDate fecha;
 
     public OrdenPedido() {
     }
@@ -35,22 +36,6 @@ public class OrdenPedido {
         this.id_estado = id_estado;
     }
 
-    public OrdenPedido(Integer id_orden, Integer id_cliente, Integer id_tipoP, String dni, String nombreCli, String direcCli, Integer cantidad, Integer id_estado, String nombEstado, Integer id_med, String descrip, double precio, double subtotal, String presen, String labo) {
-        this.id_orden = id_orden;
-        this.id_cliente = id_cliente;
-        this.id_tipoP = id_tipoP;
-        this.dni = dni;
-        this.nombreCli = nombreCli;
-        this.direcCli = direcCli;
-        this.cantidad = cantidad;
-        this.id_estado = id_estado;
-        this.nombEstado = nombEstado;
-        this.id_med = id_med;
-        this.descrip = descrip;
-        this.precio = precio;
-        this.presen = presen;
-        this.labo = labo;
-    }
 
     public Integer getId_orden() {
         return id_orden;
@@ -156,20 +141,12 @@ public class OrdenPedido {
         this.subtotal = subtotal;
     }
 
-    public String getPresen() {
-        return presen;
+    public LocalDate getFecha() {
+        return fecha;
     }
 
-    public void setPresen(String presen) {
-        this.presen = presen;
-    }
-
-    public String getLabo() {
-        return labo;
-    }
-
-    public void setLabo(String labo) {
-        this.labo = labo;
+    public void setFecha(LocalDate fecha) {
+        this.fecha = fecha;
     }
 
 }
