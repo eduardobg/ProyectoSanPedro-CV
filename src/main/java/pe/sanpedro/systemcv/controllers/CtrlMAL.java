@@ -1,6 +1,8 @@
 
 package pe.sanpedro.systemcv.controllers;
 
+import pe.sanpedro.systemcv.dao.GenericDao;
+import pe.sanpedro.systemcv.dao.impl.DaoOrdenPedidoImpl;
 import pe.sanpedro.systemcv.view.FrmMainAlmacen;
 
 /**

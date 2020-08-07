@@ -136,6 +136,7 @@ public class DaoOrdenPedidoImpl implements GenericDao<OrdenPedido> {
             mensaje = e.getMessage();
         }
     }
+
     
    
     
@@ -210,6 +211,39 @@ public class DaoOrdenPedidoImpl implements GenericDao<OrdenPedido> {
                     med.setCantidad(rs.getInt(7));
                     med.setNombEstado(rs.getString(8));
                     lista.add(med);
+                }
+            } catch (SQLException e) {
+                mensaje = e.getMessage();
+            }
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
+        return lista;
+    }
+    
+    @Override
+    public List<OrdenPedido> sel2() {
+        List<OrdenPedido> lista = null;
+        StringBuilder sql = new StringBuilder();
+        sql.append("SELECT ")
+                .append("orden_pedido.id_pedido,")
+                .append("orden_pedido.cantidad,")
+                .append("boleta.fecha_,")
+                .append("estado_orden.estado ")
+                .append("FROM ((orden_pedido ")
+                .append("INNER JOIN estado_orden ON orden_pedido.id_estado = estado_orden.id_estado) ")
+                .append("INNER JOIN boleta ON orden_pedido.id_pedido = boleta.id_orden) WHERE orden_pedido.id_estado=3 ");
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            try (ResultSet rs = ps.executeQuery()) {
+                lista = new ArrayList();
+                while (rs.next()) {
+                    OrdenPedido ope = new OrdenPedido();
+                    ope.setId_orden(rs.getInt(1));
+                    ope.setCantidad(rs.getInt(2));
+                    ope.setFecha(rs.getDate(3).toLocalDate());
+                    ope.setNombEstado(rs.getString(4));
+                    lista.add(ope);
                 }
             } catch (SQLException e) {
                 mensaje = e.getMessage();

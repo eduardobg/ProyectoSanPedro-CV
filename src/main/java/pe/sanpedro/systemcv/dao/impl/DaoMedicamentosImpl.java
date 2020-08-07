@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import pe.sanpedro.systemcv.dao.GenericDao;
 import pe.sanpedro.systemcv.model.Medicamentos;
 import pe.sanpedro.systemcv.util.ConectaBD;
@@ -149,6 +151,36 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos> {
     }
 
     @Override
+    public List<Medicamentos> searchByQuery(String nombre) {
+        List<Medicamentos> list = new ArrayList();
+        String sql = "SELECT id_med,nombre,fecha_elab,fecha_ven,precio,stock,presen,labo,descrip FROM medicamentos WHERE nombre = ?";
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, nombre);
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Medicamentos m = new Medicamentos();
+                    m.setID_Med(rs.getString(1));
+                    m.setNombre(rs.getString(2));
+                    m.setF_elab(rs.getDate(3).toLocalDate());
+                    m.setF_venci(rs.getDate(4).toLocalDate());
+                    m.setPrecio(rs.getDouble(5));
+                    m.setStock(rs.getInt(6));
+                    m.setPresent(rs.getString(7));
+                    m.setLab(rs.getString(8));
+                    m.setDescrip(rs.getString(9));
+                    list.add(m);
+                }
+            } catch (SQLException e) {
+                mensaje = e.getMessage();
+            }
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
+        return list;
+    }
+
+    @Override
     public Medicamentos searchById(int id) {
         Medicamentos med = null;
         String sql = "SELECT * FROM medicamentos WHERE id_med = ? ";
@@ -179,6 +211,24 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos> {
         }
         return med;
 
+    }
+
+    @Override
+    public void update2(int cant, int idmed) {
+        String sql = "UPDATE medicamentos SET stock = ? WHERE id_med = ? ";
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, idmed);
+            ps.setInt(2, cant);
+            int dml = ps.executeUpdate();
+            if (dml == 1) {
+                mensaje = "Estado Actualizado";
+            } else {
+                mensaje = "ERROR AL ACTUALIZAR";
+            }
+        } catch (SQLException ex) {
+            mensaje = ex.getMessage();
+        }
     }
 
     @Override
