@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import pe.sanpedro.systemcv.dao.GenericDao;
@@ -35,8 +36,7 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
                 .append("fecha_ven,")
                 .append("precio,")  
                 .append("stock,") 
-                .append("presen,")
-                .append("presen,")
+                .append("presen,")               
                 .append("labo,")
                 .append("descrip ")
                 .append("FROM medicamentos ")    ;         
@@ -68,7 +68,7 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
     
     @Override
     public Medicamentos searchByQuery2(String query) {
-        Medicamentos med = new Medicamentos();
+        Medicamentos med = null;
         StringBuilder sql = new StringBuilder();
         sql.append("SELECT ")
                 .append("id_med,")
@@ -85,6 +85,7 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
             PreparedStatement ps = cn.prepareStatement(sql.toString());     
             ps.setString(1, query); 
             try (ResultSet rs = ps.executeQuery()) {
+                med = new Medicamentos();
                 while (rs.next()) {
                     med.setID_Med(rs.getString(1));
                     med.setNombre(rs.getString(2));
@@ -104,16 +105,174 @@ public class DaoMedicamentosImpl implements GenericDao<Medicamentos>{
         }
         return med;
     }
-    
-    
-    
-    
-    
-    
-    
-    
 
+    @Override
+    public Boolean insert(Medicamentos t) {
+        boolean ok = false;
+        StringBuilder sql = new StringBuilder();
+        sql.append("INSERT INTO medicamentos( ")
+                .append("tipo_serv,")
+                .append("nombre,")
+                .append("fecha_elab,")
+                .append("fecha_ven,")
+                .append("precio,")
+                .append("stock,")
+                .append("presen,")
+                .append("labo, ")
+                .append("descrip ")
+                .append(") VALUES (?,?,?,?,?,?,?,?,?) ");
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            ps.setInt(1, 4);
+            ps.setString(2, t.getNombre());
+            ps.setString(3, t.getF_elab().toString());
+            ps.setString(4, t.getF_venci().toString());
+            ps.setString(5, String.valueOf(t.getPrecio()));
+            ps.setString(6, String.valueOf(t.getStock()));
+            ps.setString(7, t.getPresent());
+            ps.setString(8, t.getLab());
+            ps.setString(9, t.getDescrip());
+            int dml = ps.executeUpdate();
+            if (dml == 1) {
+                ok = true;
+                mensaje = "INSERTADO CORRECTAMENTE";
+                System.out.println("INSERTADO CORRECTAMENTE");
+            } else {
+                mensaje = "ERROR AL INSERTAR";
+                System.out.println("ERROR AL INSERTAR");
+            };
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            System.out.println(mensaje);
+        }
+        return ok;       
+      
+    }
 
+    @Override
+    public Medicamentos searchById(int id) {
+        Medicamentos med = null;
+        String sql = "SELECT * FROM medicamentos WHERE id_med = ? ";
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setInt(1, id);
+            try (ResultSet rs = ps.executeQuery()) {
+                med = new Medicamentos();
+                if (rs.next()) {
+                    med.setID_Med(rs.getString("id_med"));
+                    med.setNombre(rs.getString("nombre"));
+                    med.setF_elab(LocalDate.parse(rs.getString("fecha_elab")));
+                    med.setF_venci(LocalDate.parse(rs.getString("fecha_ven")));
+                    med.setPrecio(Double.parseDouble(rs.getString("precio")));
+                    med.setStock(Integer.parseInt(rs.getString("stock")));
+                    med.setPresent(rs.getString("presen"));
+                    med.setLab(rs.getString("labo"));
+                    med.setDescrip(rs.getString("descrip"));
+                }
+
+            } catch (Exception e) {
+                mensaje = e.getMessage();                
+            }
+
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            
+        }
+        return med;
+        
+    }
+    
+    @Override
+    public void delete(int id) {
+        String sql = "DELETE FROM medicamentos WHERE id_med= ?";
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, String.valueOf(id));                    
+            int dml = ps.executeUpdate();
+            if (dml == 1) {
+                mensaje="Medicamento ELIMINADO";
+            } else {
+                mensaje="ERROR AL ELIMINAR";
+            }
+
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
+    }
+
+    @Override
+    public void update(Medicamentos t) {
+        StringBuilder sql = new StringBuilder();
+        sql.append("UPDATE medicamentos SET ")              
+                .append("nombre=?,")
+                .append("fecha_elab=?,")
+                .append("fecha_ven=?,")
+                .append("precio=?,")
+                .append("stock=?,")
+                .append("presen=?,")
+                .append("labo=?,")
+                .append("descrip=? ")
+                .append("WHERE id_med=?");
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql.toString());
+            ps.setString(1, t.getNombre());
+            ps.setString(2, t.getF_elab().toString());
+            ps.setString(3, t.getF_venci().toString());
+            ps.setString(4, String.valueOf(t.getPrecio()));
+            ps.setString(5, String.valueOf(t.getStock()));
+            ps.setString(6, t.getPresent());
+            ps.setString(7, t.getLab());
+            ps.setString(8, t.getDescrip());
+            ps.setString(9, t.getID_Med());
+            int dml = ps.executeUpdate();
+            if (dml == 1) {
+                mensaje="ACTUALIZADO CORRECTAMENTE";
+            } else {
+                mensaje="ERROR AL ACTUALIZAR";
+            }
+
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+        }
+    }
+
+    @Override
+    public List<Medicamentos> searchBetween(int area, LocalDate d1, LocalDate d2) {
+        List<Medicamentos> lista = null;
+        String sql = "SELECT * FROM medicamentos WHERE fecha_ven BETWEEN ? AND ?";
+        try (Connection cn = conectaDb.conexionDB()) {
+            PreparedStatement ps = cn.prepareStatement(sql);
+            ps.setString(1, String.valueOf(d1));
+            ps.setString(2, String.valueOf(d2));
+            try (ResultSet rs = ps.executeQuery()) {
+                lista = new ArrayList();                
+                if (rs.next()) {
+                    Medicamentos med = new Medicamentos();
+                    med.setID_Med(rs.getString("id_med"));
+                    med.setNombre(rs.getString("nombre"));
+                    med.setF_elab(LocalDate.parse(rs.getString("fecha_elab")));
+                    med.setF_venci(LocalDate.parse(rs.getString("fecha_ven")));
+                    med.setPrecio(Double.parseDouble(rs.getString("precio")));
+                    med.setStock(Integer.parseInt(rs.getString("stock")));
+                    med.setPresent(rs.getString("presen"));
+                    med.setLab(rs.getString("labo"));
+                    med.setDescrip(rs.getString("descrip"));
+                    lista.add(med);
+                }
+
+            } catch (Exception e) {
+                mensaje = e.getMessage();                
+            }
+
+        } catch (SQLException e) {
+            mensaje = e.getMessage();
+            
+        }
+        return lista; 
+       
+    }
+    
+    
     @Override
     public String getMessage() {
         return mensaje;

@@ -38,9 +38,9 @@ D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\mod
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\view\FrmLoginT.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlEstetica_MC.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\view\PnlPagoOrden_MC.java
-D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\model\Boleta.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlInicio_MR.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\view\PnlInfoEmpresa_MA.java
+D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\util\GrabarFichero.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\view\PnlInicio_MR.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\model\OrdenCita.java
 D:\PROGRAMACION\Proyectos Java\SanPedroCV\src\main\java\pe\sanpedro\systemcv\controllers\CtrlMantenimientoPro_MAL.java

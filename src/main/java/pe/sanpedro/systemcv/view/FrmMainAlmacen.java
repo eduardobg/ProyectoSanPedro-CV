@@ -44,6 +44,7 @@ public class FrmMainAlmacen extends javax.swing.JFrame {
         btn_mantenimiento = new javax.swing.JButton();
         btn_control = new javax.swing.JButton();
         Pnl_VP = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -62,6 +63,10 @@ public class FrmMainAlmacen extends javax.swing.JFrame {
         jPanel1.add(btn_control, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 0, 170, 60));
 
         Pnl_VP.setLayout(new java.awt.CardLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/pictures/fondoMAL.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        Pnl_VP.add(jLabel1, "card2");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,6 +101,7 @@ public class FrmMainAlmacen extends javax.swing.JFrame {
     private javax.swing.JButton btn_despacho;
     private javax.swing.JButton btn_inicio;
     private javax.swing.JButton btn_mantenimiento;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

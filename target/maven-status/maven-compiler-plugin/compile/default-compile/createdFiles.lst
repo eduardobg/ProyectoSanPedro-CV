@@ -12,7 +12,6 @@ pe\sanpedro\systemcv\view\PnlMascotas_MR$1.class
 pe\sanpedro\systemcv\view\FrmMainFarmacia.class
 pe\sanpedro\systemcv\view\FrmMainAdmin.class
 pe\sanpedro\systemcv\dao\impl\DaoInfoEmpresaImpl.class
-pe\sanpedro\systemcv\model\Boleta.class
 pe\sanpedro\systemcv\dao\impl\DaoHorariosImpl.class
 pe\sanpedro\systemcv\view\PnlConsultaGeneral_MC.class
 pe\sanpedro\systemcv\controllers\CtrlMF.class
@@ -71,6 +70,7 @@ pe\sanpedro\systemcv\dao\impl\DaoRazaImpl.class
 pe\sanpedro\systemcv\view\FrmLoginT.class
 pe\sanpedro\systemcv\dao\GenericDao.class
 pe\sanpedro\systemcv\view\PnlReportes_MA.class
+pe\sanpedro\systemcv\util\GrabarFichero.class
 pe\sanpedro\systemcv\view\PnlConsultaGeneral_MC$2.class
 pe\sanpedro\systemcv\controllers\CtrlControlCaducidad_MAL.class
 pe\sanpedro\systemcv\view\PnlDespachoPro_MAL$1.class
