@@ -3,7 +3,6 @@ package pe.sanpedro.systemcv.controllers;
 import java.awt.CardLayout;
 import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import pe.sanpedro.systemcv.dao.GenericDao;
 import pe.sanpedro.systemcv.dao.impl.DaoDetallePedidoImpl;

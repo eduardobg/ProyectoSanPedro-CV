@@ -88,7 +88,7 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, query);
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
+                if (rs.next()) {
                     mascota = new Mascota();
                     mascota.setId_mascota(rs.getInt(1));
                     mascota.setNom_mascota(rs.getString(2));
@@ -117,7 +117,7 @@ public class DaoMascotaImpl implements GenericDao<Mascota> {
             PreparedStatement ps = cn.prepareStatement(sql.toString());
             ps.setString(1, String.valueOf(id));
             try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
+                if (rs.next()) {
                     mascota = new Mascota();
                     mascota.setId_especie(rs.getInt(1));
                 }
