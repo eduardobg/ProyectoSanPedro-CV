@@ -181,8 +181,8 @@ public class CtrlConsultaGeneral_MC {
         Object ob4 = pnlConsultaG.getJtbl2().getModel().getValueAt(pnlConsultaG.getJtbl2().getSelectedRow(), 5);
         if (!String.valueOf(ob4).equalsIgnoreCase("Ocupado")){
             pnlConsultaG.getTxt_idH().setText(String.valueOf(ob));
-            pnlConsultaG.getTxt_nombH().setText(String.valueOf(ob3));
-            pnlConsultaG.getTxt_turnoH().setText(String.valueOf(ob2));
+            pnlConsultaG.getTxt_nombH().setText(String.valueOf(ob2));
+            pnlConsultaG.getTxt_turnoH().setText(String.valueOf(ob3));
             double total = 50;
             pnlConsultaG.getTxt_total().setText(String.valueOf(total));   
         }else{

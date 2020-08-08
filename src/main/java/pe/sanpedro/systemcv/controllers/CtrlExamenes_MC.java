@@ -54,6 +54,7 @@ public class CtrlExamenes_MC {
         pnlExamenes.getBtn_buscarM().addActionListener(e -> buscarMascota());
         pnlExamenes.getBtn_agregarM().addActionListener(e -> agregarMascota());
         pnlExamenes.getBtn_agregarE().addActionListener(e -> agregarExamen());
+        pnlExamenes.getBtn_cambiarM().addActionListener(e -> cambiarMascota());
         pnlExamenes.getBtn_quitarE().addActionListener(e -> quitarExamen());
         pnlExamenes.getBtn_cobrar().addActionListener(e -> cobrar());
         pnlExamenes.getBtn_generarBoleta().addActionListener(e -> generarBoleta());
@@ -289,6 +290,11 @@ public class CtrlExamenes_MC {
             e.printStackTrace();
         }
 
+    }
+    private void cambiarMascota(){
+        pnlExamenes.limpiarMascota();
+        ((DefaultTableModel) pnlExamenes.getJtbl2().getModel()).setNumRows(0);
+        
     }
 
     private void cambiarCliente() {

@@ -94,7 +94,7 @@ public class CtrlReporte_MA {
     }
 
     private void limpiar() {
-        ((DefaultTableModel) pnlReporte.getJtbl().getModel()).setNumRows(0);
+        initController();
     }
 
     private void crearExcel() {
@@ -167,7 +167,7 @@ public class CtrlReporte_MA {
                 fil.createCell(9).setCellValue(pnlReporte.lista.get(x).getImporteTotal());
             }
             try {
-                FileOutputStream fo = new FileOutputStream(new File("C:\\tmp\\ExcelSanPedro.xlsx"));
+                FileOutputStream fo = new FileOutputStream(new File("D:\\tmp\\ExcelSanPedro.xlsx"));
                 wb.write(fo);
             } catch (Exception e) {
                 e.printStackTrace();

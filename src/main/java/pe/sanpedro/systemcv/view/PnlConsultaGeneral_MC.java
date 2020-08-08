@@ -43,15 +43,7 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
 
     public JButton getBtn_cambiarCli() {
         return btn_cambiarCli;
-    }
-
-    public JButton getBtn_cambiarH() {
-        return btn_cambiarH;
-    }
-
-    public JButton getBtn_cambiarM() {
-        return btn_cambiarM;
-    }
+    }    
 
     public JButton getBtn_cobrar() {
         return btn_cobrar;
@@ -166,7 +158,6 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txt_nombCli = new javax.swing.JTextField();
         txt_direcCli = new javax.swing.JTextField();
-        btn_cambiarCli = new javax.swing.JButton();
         jLabel13 = new javax.swing.JLabel();
         txt_idCli = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -188,8 +179,6 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         txt_nombM = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        btn_cambiarH = new javax.swing.JButton();
-        btn_cambiarM = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         txt_turnoH = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
@@ -198,6 +187,7 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
         txt_especieM = new javax.swing.JTextField();
         txt_idH = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        btn_cambiarCli = new javax.swing.JButton();
         btn_generarBoleta = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
         txt_ingresado = new javax.swing.JTextField();
@@ -226,8 +216,6 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
         txt_nombCli.setEditable(false);
 
         txt_direcCli.setEditable(false);
-
-        btn_cambiarCli.setText("Cambiar Cliente");
 
         jLabel13.setText("DNI:");
 
@@ -268,15 +256,10 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
                         .addComponent(txt_idCli, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(81, 81, 81)
-                        .addComponent(txt_buscarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(btn_buscarCli))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(263, 263, 263)
-                        .addComponent(btn_cambiarCli)))
+                .addGap(81, 81, 81)
+                .addComponent(txt_buscarCli, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_buscarCli)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -302,9 +285,7 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
                     .addComponent(txt_nombCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(txt_apeCli, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btn_cambiarCli)
-                .addGap(30, 30, 30))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Mascotas"));
@@ -412,7 +393,7 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
                     .addComponent(btn_agregarH)
                     .addComponent(jLabel1)
                     .addComponent(cbx, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22))
         );
@@ -432,10 +413,6 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
 
         txt_nombM.setEditable(false);
 
-        btn_cambiarH.setText("Cambiar");
-
-        btn_cambiarM.setText("Cambiar");
-
         jLabel9.setText("Horario:");
 
         txt_turnoH.setEditable(false);
@@ -452,6 +429,8 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
 
         jLabel12.setText("ID Horario:");
 
+        btn_cambiarCli.setText("Cambiar ");
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -465,17 +444,11 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txt_nombM, javax.swing.GroupLayout.DEFAULT_SIZE, 232, Short.MAX_VALUE)
                     .addComponent(txt_idM))
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(28, 28, 28)
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txt_especieM, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
-                        .addGap(86, 86, 86)
-                        .addComponent(btn_cambiarM)
-                        .addGap(99, 99, 99))))
+                .addGap(28, 28, 28)
+                .addComponent(jLabel11)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(txt_especieM, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(jSeparator1)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(104, 104, 104)
@@ -486,16 +459,16 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(txt_nombH, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                        .addComponent(btn_cambiarH)
-                        .addGap(92, 92, 92))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(txt_idH, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(txt_turnoH, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addComponent(txt_nombH, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 153, Short.MAX_VALUE)
+                        .addComponent(btn_cambiarCli)
+                        .addGap(44, 44, 44))))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -506,22 +479,25 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
                     .addComponent(txt_idM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11)
                     .addComponent(txt_especieM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_nombM, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10)
-                    .addComponent(btn_cambiarM))
-                .addGap(27, 27, 27)
+                    .addComponent(jLabel10))
+                .addGap(29, 29, 29)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(21, 21, 21)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(txt_idH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(28, 28, 28)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btn_cambiarH)
-                    .addComponent(txt_nombH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txt_nombH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9)))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(16, 16, 16)
+                        .addComponent(btn_cambiarCli)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_turnoH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -613,8 +589,6 @@ public class PnlConsultaGeneral_MC extends javax.swing.JPanel {
     private javax.swing.JButton btn_buscarH;
     private javax.swing.JButton btn_buscarM;
     private javax.swing.JButton btn_cambiarCli;
-    private javax.swing.JButton btn_cambiarH;
-    private javax.swing.JButton btn_cambiarM;
     private javax.swing.JButton btn_cobrar;
     private javax.swing.JButton btn_generarBoleta;
     private javax.swing.JComboBox<String> cbx;

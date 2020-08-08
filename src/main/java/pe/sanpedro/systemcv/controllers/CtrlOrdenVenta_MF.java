@@ -147,15 +147,12 @@ public class CtrlOrdenVenta_MF {
         DefaultTableModel model = (DefaultTableModel) pnlOrdenVenta.getJTableMed().getModel();
         if (lista != null) {
             lista.forEach((n) -> {
-                Object[] fila = new Object[8];
+                Object[] fila = new Object[5];
                 fila[0] = n.getID_Med();
-                fila[1] = n.getNombre();
-                fila[2] = n.getF_elab();
-                fila[3] = n.getF_venci();
-                fila[4] = n.getPrecio();
-                fila[5] = n.getStock();
-                fila[6] = n.getPresent();
-                fila[7] = n.getLab();
+                fila[1] = n.getNombre();                
+                fila[2] = n.getPrecio();
+                fila[3] = n.getStock();
+                fila[4] = n.getPresent();            
                 model.addRow(fila);
             });
             pnlOrdenVenta.getJTableMed().setModel(model);
@@ -169,6 +166,7 @@ public class CtrlOrdenVenta_MF {
     }
 
     private void limpiar() {
+        pnlOrdenVenta.getTxt_idCli().setText("");
         pnlOrdenVenta.getTxtDNIBuscar().setText("");
         pnlOrdenVenta.getTxtDNI().setText("");
         pnlOrdenVenta.getTxtNombre().setText("");
